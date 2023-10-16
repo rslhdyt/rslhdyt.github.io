@@ -26,7 +26,7 @@ url: https://rslhdyt.github.io
 permalink: /:title/
 
 # To enable google analytics, supply your token below
-# analytics-google: 'UA-MYANALYTICS'
+analytics-google: 'G-TB0KL5Y552'
 
 # if you don't want comments in your posts, leave categories empty
 disqus:
