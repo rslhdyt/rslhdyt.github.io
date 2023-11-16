@@ -11,6 +11,8 @@ star: true
 category: blog
 author: johndoe
 description: Markdown summary with different options
+externalLink: false
+published: false
 ---
 
 ## Basic formatting
