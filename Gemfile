@@ -12,3 +12,7 @@ group :jekyll_plugins do
 end
 
 gem "webrick", "~> 1.7"
+
+gem 'notion-ruby-client'
+gem 'notion_to_md'
+gem "kramdown-parser-gfm"

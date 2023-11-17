@@ -1,20 +1,19 @@
 ---
-title: "Rails Authentication: Login with magic link"
-layout: post
-date: 2023-11-15 22:00
-image: /assets/images/markdown.jpg
-headerImage: false
-tag:
-- authentication
-- rails 
-- tutorial
-star: true
+tags: ["rails", "authentication", "tutorial"]
+date: 2023-11-13
+description: Magic link authentication is a method of logging into a website or application without the need for a password.
+published: true
 category: blog
-author: Risal Hidayat
-description: Tutorial creating sign in with magic link in Rails
+id: 3cd2da67-9c22-474a-8d3f-6c36c6c6ab05
+title: Rails Authentication Login with magic link
+created_time: 2023-11-09T03:27:00+00:00
+cover: 
+icon: 
+last_edited_time: 2023-11-17T07:22:00+00:00
+archived: false
 ---
 
-![Photo by [Austinchan](https://unsplash.com/@austinchan) / [Unsplash](https://unsplash.com/?utm_source=ghost&utm_medium=referral&utm_campaign=api-credit)](https://images.unsplash.com/photo-1496449903678-68ddcb189a24?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb)
+![](https://images.unsplash.com/photo-1496449903678-68ddcb189a24?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb)
 
 Photo by [Austinchan](https://unsplash.com/@austinchan) / [Unsplash](https://unsplash.com/?utm_source=ghost&utm_medium=referral&utm_campaign=api-credit)
 
@@ -34,8 +33,9 @@ Typically, the user only needs to enter their email on the authentication page. 
 
 To implement the login using magic link you need to do these things:
 
-1. Controller to generate magic link and handle login with link
-2. Mailer that will send out the magic link
+- Controller to generate magic link and handle login with link
+
+- Mailer that will send out the magic link
 
 ### Create controller handler
 
@@ -43,14 +43,14 @@ I will name my controller `sign_in_links_controller.rb` and add route like this
 
 ```ruby
 class SignInLinksController < ApplicationController
-	def new
-	end
+  def new
+  end
 
-	def create
-	end
+  def create
+  end
 
-	def authenticate
-	end
+  def authenticate
+  end
 end
 ```
 
@@ -64,7 +64,7 @@ get 'sign_in/authenticate/:token', to: 'sign_in_links#authenticate', as: 'authen
 
 ```ruby
 def new
-	@user = User.new
+  @user = User.new
 end
 ```
 
@@ -73,7 +73,7 @@ end
 
 <%= form_with(model: @user, url: sign_in_links_path) do |f| %>
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :email %>
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
@@ -109,22 +109,24 @@ end
 
 As you can see above, there are 3 steps to generate the login with magic link.
 
-1. Check the user email existence
-2. Generate signed URL token
-3. Send the magic link via mailer
+- Check the user email existence
+
+- Generate signed URL token
+
+- Send the magic link via mailer
 
 Rails 6 introduced `signed_id` method and we can utilize this method to generate authenticate token.
 
 > signed_id method returns a signed id that’s generated using a preconfigured `ActiveSupport::MessageVerifier` instance. This signed id is tamper proof, so it’s safe to send in an email or otherwise share with the outside world. It can furthermore be set to expire (the default is not to expire), and scoped down with a specific purpose. If the expiration date has been exceeded before `find_signed` is called, the id won’t find the designated record. If a purpose is set, this too must match.
-> 
 
 [https://api.rubyonrails.org/classes/ActiveRecord/SignedId.html#method-i-signed_id](https://api.rubyonrails.org/classes/ActiveRecord/SignedId.html#method-i-signed_id)
 
 The signed_id method accept 2 optional params
 
-1. expires_in
+- expires_in
 To set the expiration of the signed ID
-2. purpose
+
+- purpose
 To set the name or purpose of signed ID generation
 
 ### Login link handler
@@ -144,7 +146,7 @@ def authenticate
   else
     flash[:info] = 'Link invalid or expired. Please try again.'
 
-		# redirect to login page
+    # redirect to login page
     redirect_to new_user_session_path
   end
 end
@@ -176,7 +178,7 @@ And here is the view
 
 ```ruby
 <div>
-    <h2>Hi!</h2>
+  <h2>Hi!</h2>
 </div>
 
 <div>

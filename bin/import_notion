@@ -1,0 +1,34 @@
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+
+require "notion"
+require "notion_to_md"
+
+notion_secret = ENV['NOTION_SECRET']
+database_id = ENV['NOTION_DATABASE_ID']
+
+notion_client = Notion::Client.new(token: notion_secret)
+
+# read the database and filter based on published status field with checkbox
+database = notion_client.database_query(
+  database_id: database_id,
+  filter: { 'or': [{ property: "Published", checkbox: { equals: true } } ] }
+)
+
+database.results.each do |page|
+  return if page.object != 'page'
+  
+  title = page.properties['Name']['title'][0]['plain_text']
+  sluggable_title = title.downcase.gsub(/[^a-z0-9]+/, '-').chomp('-')
+  date = page.properties['Date']['date']['start']
+  
+  notion_converter = NotionToMd::Converter.new(page_id: page.id, token: notion_secret)
+  md = notion_converter.convert(frontmatter: true)
+  
+  # check if file exists
+  filename_with_path = "_posts/#{date}-#{sluggable_title}.markdown"
+
+  File.write(filename_with_path, md)
+end
+
