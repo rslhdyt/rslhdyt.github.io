@@ -27,7 +27,7 @@ The profile endpoint
 
 ```ruby
 def profile
-	render json: current_user
+  render json: current_user
 end
 ```
 
@@ -50,22 +50,20 @@ end
 
 In this code, ensure that you replace `**ACTOR**` with the appropriate user or actor identifier in your application. Additionally, consider adding comments for clarity in the code.
 
-<br />
-
 ```ruby
 def profile
-	render json: current_user_with_features
+  render json: current_user_with_features
 end
 
 private
 
 def current_user_with_features
-	current_user.merge({ features: user_features })
+  current_user.merge({ features: user_features })
 end
 
 def user_features
-	Flipper.features.inject({}) do |hash, feature|
-	  hash[feature.key] = feature.enabled? current_user
+  Flipper.features.inject({}) do |hash, feature|
+    hash[feature.key] = feature.enabled? current_user
     hash
   end
 end
@@ -84,5 +82,3 @@ end
   }
 }
 ```
-
-<br />
