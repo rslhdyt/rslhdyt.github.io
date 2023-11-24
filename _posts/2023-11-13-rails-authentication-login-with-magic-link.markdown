@@ -5,7 +5,7 @@ description: Magic link authentication is a method of logging into a website or 
 published: true
 category: blog
 id: 3cd2da67-9c22-474a-8d3f-6c36c6c6ab05
-title: "Rails Authentication Login with magic link"
+title: "Rails Authentication Login with Magic Link"
 created_time: 2023-11-09T03:27:00+00:00
 cover: 
 icon: 
