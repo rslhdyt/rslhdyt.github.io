@@ -5,7 +5,7 @@ description: Previewing your mailer class in rails
 published: true
 category: blog
 id: a26783a3-ea2a-455c-8d57-2c23c7dbcc35
-title: Rails Email Preview
+title: "Rails Email Preview"
 created_time: 2022-10-26T07:13:00+00:00
 cover: 
 icon: 
@@ -21,10 +21,10 @@ Let’s assume we already have a mailer class like this one.
 
 ```ruby
 class UserMailer < ApplicationMailer
-  def welcome(user)
-    @user = user
-    mail(to: user.email, subject: 'Welcome!')
-  end
+	def welcome(user)
+		@user = user
+		mail(to: user.email, subject: 'Welcome!')
+	end
 end
 ```
 
@@ -42,11 +42,11 @@ In order to enable the email preview for user mailer, we need to create user mai
 
 ```ruby
 class UserMailerPreview < ActionMailer::Preview
-  def welcome
-    user = User.first
+	def welcome
+		user = User.first
 
-    UserMailer.welcome(user)
-  end
+		UserMailer.welcome(user)
+	end
 end
 ```
 
@@ -54,11 +54,15 @@ Then, you can check the email preview by accessing this url in your local url de
 
 If everything goes right, you will see the list available email preview like this.
 
-![](https://prod-files-secure.s3.us-west-2.amazonaws.com/14f037b2-f507-4c22-9546-eba261dcbb3e/7f7cdfba-29b7-45bc-8e98-dde02f4864bd/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45HZZMZUHI%2F20231121%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20231121T030405Z&X-Amz-Expires=3600&X-Amz-Signature=753f2be2009ff0b6f24705a6f443aeb91477993e95cd6d6bdb7f996bac373ab9&X-Amz-SignedHeaders=host&x-id=GetObject)
+![](/assets/images/posts/Untitled.png)
+
+<em></em>
 
 And if you click the welcome email preview it will show the preview of user mailer welcome.
 
-![](https://prod-files-secure.s3.us-west-2.amazonaws.com/14f037b2-f507-4c22-9546-eba261dcbb3e/745e2fef-1c12-4aa5-93ef-5ed5cdb0d837/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45HZZMZUHI%2F20231121%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20231121T030405Z&X-Amz-Expires=3600&X-Amz-Signature=dc858079d962df2bfd7c01e1ae3b6d06ba9b2791e66cab4d3f568991386e36be&X-Amz-SignedHeaders=host&x-id=GetObject)
+![](/assets/images/posts/Untitled.png)
+
+<em></em>
 
 Voila, that’s all. I hope this tutorial will make you more productive when working with a feature with an email.
 

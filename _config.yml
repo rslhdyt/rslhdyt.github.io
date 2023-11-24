@@ -103,6 +103,7 @@ plugins:
   - jekyll-feed
   - jemoji
   - jekyll-paginate-v2
+  - jekyll-sitemap
 
 compress_html:
   ignore:
@@ -117,4 +118,5 @@ exclude:
     "Gemfile.lock",
     "FAQ.md",
     "vendor",
+    "bin"
   ]
