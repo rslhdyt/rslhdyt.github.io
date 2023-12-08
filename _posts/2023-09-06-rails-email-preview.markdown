@@ -46,7 +46,7 @@ class UserMailerPreview < ActionMailer::Preview
     user = User.first
 
     UserMailer.welcome(user)
-	end
+  end
 end
 ```
 
