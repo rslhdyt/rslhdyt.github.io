@@ -9,7 +9,7 @@ title: "Rails Email Preview"
 created_time: 2022-10-26T07:13:00+00:00
 cover: 
 icon: 
-last_edited_time: 2023-11-21T00:32:00+00:00
+last_edited_time: 2023-12-08T03:08:00+00:00
 archived: false
 ---
 
@@ -21,10 +21,10 @@ Let’s assume we already have a mailer class like this one.
 
 ```ruby
 class UserMailer < ApplicationMailer
-	def welcome(user)
-		@user = user
-		mail(to: user.email, subject: 'Welcome!')
-	end
+  def welcome(user)
+    @user = user
+    mail(to: user.email, subject: 'Welcome!')
+  end
 end
 ```
 
@@ -42,10 +42,10 @@ In order to enable the email preview for user mailer, we need to create user mai
 
 ```ruby
 class UserMailerPreview < ActionMailer::Preview
-	def welcome
-		user = User.first
+  def welcome
+    user = User.first
 
-		UserMailer.welcome(user)
+    UserMailer.welcome(user)
 	end
 end
 ```
