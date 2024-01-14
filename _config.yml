@@ -67,10 +67,6 @@ projects: false
 
 code_snippet: true
 
-collections:
-  code_snippets:
-    output: true
-
 # if you don't need "about" or "blog", comment them out below
 about: true
 blog: true
