@@ -29,12 +29,12 @@ import { Controller } from "stimulus";
 
 export default class extends Controller {
   copyFromText(event) {
-		event.preventDefault()
+    event.preventDefault()
     const textToCopy = event.target.innerText
 
     navigator.clipboard.writeText(textToCopy).then(() => {
       // optional, you also can add toasr message
-			alert('Copied to clipboard')
+      alert('Copied to clipboard')
     }).catch(err => {
       console.error('Could not copy text: ', err)
     });
@@ -52,7 +52,7 @@ To use this controller in your Stimulus application, you would first add a `dat
 <div data-controller="clipboard">
   <p data-action="click->clipboard#copyFromText">
     Text to copy
-	</p>
+  </p>
 </div>
 ```
 
