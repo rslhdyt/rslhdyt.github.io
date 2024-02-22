@@ -18,21 +18,21 @@ database = notion_client.database_query(
 )
 
 module NotionToMd
-  class Page
-    def frontmatter
-      @frontmatter ||= <<~CONTENT
-        ---
-        #{props.to_a.map do |k, v|
-            if k.to_s == 'title'
-              "title: \"#{v}\""
-            else
-              "#{k}: #{v}"
-            end
-          end.join("\n")}
-        ---
-      CONTENT
-    end
-  end
+  # class Page
+  #   def frontmatter
+  #     @frontmatter ||= <<~CONTENT
+  #       ---
+  #       #{props.to_a.map do |k, v|
+  #           if k.to_s == 'title'
+  #             "title: \"#{v}\""
+  #           else
+  #             "#{k}: #{v}"
+  #           end
+  #         end.join("\n")}
+  #       ---
+  #     CONTENT
+  #   end
+  # end
 
   module Blocks
     class Types

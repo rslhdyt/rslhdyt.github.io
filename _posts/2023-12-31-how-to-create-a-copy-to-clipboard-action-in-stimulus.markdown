@@ -1,16 +1,20 @@
 ---
 tags: ["code_snippet", "rails", "stimulus"]
-date: 2023-12-31
+date: 2023-12-31 00:00:00 +0700
 description: The code snippet to add functionality copy text to clipboard using stimulus rails
 published: true
 category: code_snippet
 id: 1c7ad89c-6e69-4ea8-b1e6-1e937a008942
-title: "How to Create a Copy-to-Clipboard Action in Stimulus"
-created_time: 2023-12-31T16:28:00+00:00
+title: How to Create a Copy-to-Clipboard Action in Stimulus
+created_time: 2023-12-31T16:28:00.000Z
 cover: 
 icon: 
-last_edited_time: 2024-01-14T15:35:00+00:00
+last_edited_time: 2024-01-14T15:35:00.000Z
 archived: false
+created_by_object: user
+created_by_id: 6b2c6a42-5dc5-4108-b726-4c02437b814d
+last_edited_by_object: user
+last_edited_by_id: 6b2c6a42-5dc5-4108-b726-4c02437b814d
 ---
 
 Hello, fellow coders! Today, we're going to explore a handy code snippet that allows you to copy content to the clipboard using Stimulus.
@@ -29,12 +33,12 @@ import { Controller } from "stimulus";
 
 export default class extends Controller {
   copyFromText(event) {
-    event.preventDefault()
+		event.preventDefault()
     const textToCopy = event.target.innerText
 
     navigator.clipboard.writeText(textToCopy).then(() => {
       // optional, you also can add toasr message
-      alert('Copied to clipboard')
+			alert('Copied to clipboard')
     }).catch(err => {
       console.error('Could not copy text: ', err)
     });
@@ -52,7 +56,7 @@ To use this controller in your Stimulus application, you would first add a `dat
 <div data-controller="clipboard">
   <p data-action="click->clipboard#copyFromText">
     Text to copy
-  </p>
+	</p>
 </div>
 ```
 
@@ -63,3 +67,5 @@ And there you have it! With this simple Stimulus controller, you can easily add 
 Did you find this snippet useful? Do you have any questions or suggestions for improvement? Let us know in the comments below. And stay tuned for more code snippets coming your way!
 
 That's it! You should now have a simple copy-to-clipboard feature in your Rails application using Stimulus. Adjust the code and styles as needed for your specific use case.
+
+

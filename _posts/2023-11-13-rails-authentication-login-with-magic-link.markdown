@@ -1,16 +1,20 @@
 ---
 tags: ["rails", "authentication", "tutorial"]
-date: 2023-11-13
+date: 2023-11-13 00:00:00 +0700
 description: Magic link authentication is a method of logging into a website or application without the need for a password.
 published: true
 category: blog
 id: 3cd2da67-9c22-474a-8d3f-6c36c6c6ab05
-title: "Rails Authentication Login with Magic Link"
-created_time: 2023-11-09T03:27:00+00:00
+title: Rails Authentication Login with magic link
+created_time: 2023-11-09T03:27:00.000Z
 cover: 
 icon: 
-last_edited_time: 2023-11-17T07:22:00+00:00
+last_edited_time: 2023-11-17T07:22:00.000Z
 archived: false
+created_by_object: user
+created_by_id: 6b2c6a42-5dc5-4108-b726-4c02437b814d
+last_edited_by_object: user
+last_edited_by_id: 6b2c6a42-5dc5-4108-b726-4c02437b814d
 ---
 
 ![](https://images.unsplash.com/photo-1496449903678-68ddcb189a24?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb)
@@ -33,9 +37,8 @@ Typically, the user only needs to enter their email on the authentication page. 
 
 To implement the login using magic link you need to do these things:
 
-- Controller to generate magic link and handle login with link
-
-- Mailer that will send out the magic link
+1. Controller to generate magic link and handle login with link
+2. Mailer that will send out the magic link
 
 ### Create controller handler
 
@@ -109,11 +112,9 @@ end
 
 As you can see above, there are 3 steps to generate the login with magic link.
 
-- Check the user email existence
-
-- Generate signed URL token
-
-- Send the magic link via mailer
+1. Check the user email existence
+2. Generate signed URL token
+3. Send the magic link via mailer
 
 Rails 6 introduced `signed_id` method and we can utilize this method to generate authenticate token.
 
@@ -123,10 +124,9 @@ Rails 6 introduced `signed_id` method and we can utilize this method to generate
 
 The signed_id method accept 2 optional params
 
-- expires_in
+1. expires_in
 To set the expiration of the signed ID
-
-- purpose
+2. purpose
 To set the name or purpose of signed ID generation
 
 ### Login link handler
@@ -191,3 +191,5 @@ And here is the view
 ```
 
 Congratulations! You've successfully integrated magic links into your application with only a few lines of code, eliminating the need for any external libraries.
+
+

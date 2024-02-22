@@ -1,16 +1,20 @@
 ---
 tags: ["rails", "email", "testing"]
-date: 2023-09-06
+date: 2023-09-06 00:00:00 +0700
 description: Previewing your mailer class in rails
 published: true
 category: blog
 id: a26783a3-ea2a-455c-8d57-2c23c7dbcc35
-title: "Rails Email Preview"
-created_time: 2022-10-26T07:13:00+00:00
+title: Rails Email Preview
+created_time: 2022-10-26T07:13:00.000Z
 cover: 
 icon: 
-last_edited_time: 2023-12-08T03:08:00+00:00
+last_edited_time: 2023-12-08T03:08:00.000Z
 archived: false
+created_by_object: user
+created_by_id: 6b2c6a42-5dc5-4108-b726-4c02437b814d
+last_edited_by_object: user
+last_edited_by_id: 6b2c6a42-5dc5-4108-b726-4c02437b814d
 ---
 
 When working with features that need to send an email, sometimes we find out that testing the email content is a little bit painful. Usually, we will call the function that sends the email and inspect the email content and view it through a development mail server such as mailcatcher or mailtrap. Most of the time we don’t want to go through all processes to only see the email body.
@@ -46,7 +50,7 @@ class UserMailerPreview < ActionMailer::Preview
     user = User.first
 
     UserMailer.welcome(user)
-  end
+	end
 end
 ```
 
@@ -71,3 +75,5 @@ Voila, that’s all. I hope this tutorial will make you more productive when wor
 sources:
 
 - [https://guides.rubyonrails.org/action_mailer_basics.html#previewing-emails](https://guides.rubyonrails.org/action_mailer_basics.html#previewing-emails)
+
+

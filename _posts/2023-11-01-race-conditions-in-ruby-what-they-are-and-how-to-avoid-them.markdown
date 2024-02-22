@@ -1,16 +1,20 @@
 ---
 tags: ["rails", "race-condition", "tips", "database-locking"]
-date: 2023-11-01
+date: 2023-11-01 00:00:00 +0700
 description: A race condition occurs when two or more threads can access shared data and they try to change it at the same time. As a result, the values of variables may be unpredictable and vary depending on the timings of context switches of the process.
 published: true
 category: blog
 id: daeeb689-dde5-410b-a2bb-bec1ab03d630
-title: "Race conditions in Ruby what they are and how to avoid them"
-created_time: 2022-12-06T15:07:00+00:00
+title: Race conditions in Ruby what they are and how to avoid them
+created_time: 2022-12-06T15:07:00.000Z
 cover: 
 icon: 
-last_edited_time: 2023-11-17T07:31:00+00:00
+last_edited_time: 2023-11-17T07:31:00.000Z
 archived: false
+created_by_object: user
+created_by_id: 6b2c6a42-5dc5-4108-b726-4c02437b814d
+last_edited_by_object: user
+last_edited_by_id: 6b2c6a42-5dc5-4108-b726-4c02437b814d
 ---
 
 A race condition occurs when two or more threads can access shared data and they try to change it at the same time. As a result, the values of variables may be unpredictable and vary depending on the timings of context switches of the process.
@@ -177,7 +181,7 @@ By using database locking, you can prevent race conditions in situations like th
 ### Source:
 
 - [https://www.honeybadger.io/blog/avoid-race-condition-in-rails/](https://www.honeybadger.io/blog/avoid-race-condition-in-rails/)
-
 - [https://api.rubyonrails.org/classes/ActiveRecord/Locking/Pessimistic.html](https://api.rubyonrails.org/classes/ActiveRecord/Locking/Pessimistic.html)
-
 - [https://ruby-doc.org/core-2.5.0/Mutex.html](https://ruby-doc.org/core-2.5.0/Mutex.html)
+
+
