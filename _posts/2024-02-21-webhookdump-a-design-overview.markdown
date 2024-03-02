@@ -17,7 +17,7 @@ last_edited_by_object: user
 last_edited_by_id: 6b2c6a42-5dc5-4108-b726-4c02437b814d
 ---
 
-[WebhookDump](https://webhookdump.link) is a web application engineered to intercept and store HTTP requests for subsequent analysis. It is equipped with three core functionalities:
+WebhookDump is a web application engineered to intercept and store HTTP requests for subsequent analysis. It is equipped with three core functionalities:
 
 1. **Unique URL Generation**: Each client is provided with a unique URL.
 2. **HTTP Request Reception**: The application is capable of receiving HTTP requests, capturing all pertinent information such as the request body, headers, and more.
