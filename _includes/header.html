@@ -3,19 +3,19 @@
 {% endif %}
 
 {% if showHeader == true %}
-    <header class="header-home {% if site.animation %}animated{% endif %}">
+    <header class="flex flex-col items-center {% if site.animation %}animated{% endif %} mt-40">
         {% if site.about %}
-            <a class="link" href="{{ site.url }}/about">
-                <img class="selfie" alt="{{ site.title }}" src="{% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %}" />
+            <a class="flex justify-center items-center mb-5" href="{{ site.url }}/about">
+                <img class="object-cover rounded-full h-36" alt="{{ site.title }}" src="{% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %}" />
             </a>
         {% else %}
-            <span class="link">
-                <img class="selfie" alt="{{ site.title }}" src="{% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %}" />
+            <span class="flex justify-center items-center mb-5">
+                <img class="object-cover rounded-full h-36" alt="{{ site.title }}" src="{% if site.external-image %}{{ site.picture }}{% else %}{{ site.url }}/{{ site.picture }}{% endif %}" />
             </span>
         {% endif %}
 
-        <h1 class="title">{{ site.title }}</h1>
-        <h2 class="description">{{ site.bio }}</h2>
+        <h1 class="text-4xl mb-3">{{ site.title }}</h1>
+        <h2 class="text-gray-500 mb-5">{{ site.bio }}</h2>
 
         {% include social-links.html %}
     </header>

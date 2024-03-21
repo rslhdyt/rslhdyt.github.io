@@ -1,5 +1,5 @@
-<nav class="{% if page.title == "Home" %}nav-home{% else %}nav{% endif %}">
-    <ul class="list">
+<nav class="{% if page.title == "Home" %}nav-home{% else %}mt-10{% endif %} mb-10">
+    <ul class="flex flex-row justify-center items-center space-x-6 text-xl">
         {% if page.title != "Home" %}
             <li class="item">
                 <a class="link" href="{{ site.url }}/">Home</a>

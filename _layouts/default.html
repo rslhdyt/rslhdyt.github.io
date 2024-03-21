@@ -2,7 +2,7 @@
 layout: compress
 ---
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-full">
 <head>
 
     {% if site.analytics-google %}
@@ -22,46 +22,34 @@ layout: compress
 
     <script src="https://kit.fontawesome.com/d9b09040a7.js" crossorigin="anonymous"></script>
 
-    <style>
-    
-    {% if site.dark-theme == "auto" %}
-        {% capture scss_sheet %}
-            {% include style.scss %}
-            @media (prefers-color-scheme: dark) {
-                {% include style-dark.scss %}
-            }
-        {% endcapture %}
-    {% elsif site.dark-theme %}
-        {% capture scss_sheet %}{% include style-dark.scss %}{% endcapture %}
-    {% else %}
-        {% capture scss_sheet %}{% include style.scss %}{% endcapture %}
-    {% endif %}
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
 
-    {{ scss_sheet | scssify }}
-    </style>
-
+    <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
 </head>
-<body>
+<body class="bg-zinc-50 flex h-full">
     {% if page.title == 'Blog' or page.title == 'Code Snippet' %}
         {% assign page_title_class = 'blog' %}
     {% else %}
         {% assign page_title_class = page.title | downcase %}
     {% endif %}
-    <div class="wrapper-{% if site.width == "normal" %}normal{% elsif site.width == "large" %}large{% endif %}">
+
+    <div class="max-w-[50rem] flex flex-col mx-auto size-full">
         {% if page.layout == "post" %}
             <div class="post">
         {% else %}
             {% if showHeader != true %}
-                <div class="page {{ page_title_class }}">
+                <div class="{{ page_title_class }}">
             {% else %}
                 <div class="{{ page_title_class }}">
             {% endif %}
         {% endif %}
-
-            {{ content }}
-            </div>
+                    {{ content }}
                 </div>
             </div>
+        </div>
     </div>
 </body>
 </html>

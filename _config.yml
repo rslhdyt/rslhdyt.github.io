@@ -102,10 +102,13 @@ defaults:
 plugins:
   - jekyll-seo-tag
   - jekyll-gist
-  - jekyll-feed
   - jemoji
-  - jekyll-paginate-v2
+  # - jekyll-paginate-v2
   - jekyll-sitemap
+  - jekyll-postcss
+
+postcss:
+  cache: false
 
 compress_html:
   ignore:
@@ -120,5 +123,6 @@ exclude:
     "Gemfile.lock",
     "FAQ.md",
     "vendor",
-    "bin"
+    "bin",
+    "node_modules"
   ]
