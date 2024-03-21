@@ -1,8 +1,8 @@
 <p align="center">
-    <h2 align="center">Indigo Minimalist Jekyll Template - <a href="https://sergiokopplin.github.io/indigo/">Demo</a></h2>
+    <h2 align="center">Rum Minimalist Jekyll Template - <a href="https://rslhdyt.github.io/rum">Demo</a></h2>
 </p>
 
-<p align="center">This is a simple and minimalist template for Jekyll for those who likes to eat noodles.</p>
+<p align="center">This is a straightforward and minimalistic Jekyll template.</p>
 
 ***
 
@@ -21,19 +21,18 @@
 </p>
 
 <p align="center">
-    <img src="https://raw.githubusercontent.com/sergiokopplin/indigo/gh-pages/assets/screen-shot.png" />
+    <!-- TBA -->
 </p>
 
 ## What has inside
 
 - [Jekyll](https://jekyllrb.com/), [Sass](https://sass-lang.com/) ~[RSCSS](https://rscss.io/)~ and [SVG](https://www.w3.org/Graphics/SVG/);
-- Google Speed: [98/100](https://developers.google.com/speed/pagespeed/insights/?url=http%3A%2F%2Fsergiokopplin.github.io%2Findigo%2F);
 - No JS. :sunglasses:
 
 ## Setup
 
 0. :star: to the project. :metal:
-1. Fork the project [Indigo](https://github.com/sergiokopplin/indigo/fork)
+1. Fork the project [Indigo](https://github.com/TBA)
 2. Edit `_config.yml` with your data (check <a href="README.md#settings">settings</a> section)
 3. Write some posts :bowtie:
 
@@ -66,4 +65,4 @@ Check the [FAQ](./FAQ.md) if you have any doubt or problem.
 ---
 ## License
 
-[MIT](https://kopplin.mit-license.org/) License © Sérgio Kopplin
+[MIT](https://rslhdyt.mit-license.org/) License © Risal Hidayat

@@ -6,10 +6,10 @@
             {% for thisTag in page.tags %}
                 {% if postHasSimilar == false and hasSimilar.size < 5 and post != page and tag == thisTag %}
                     {% if hasSimilar.size == 0 %}
-                    <h4>Related Posts</h4>
-                    <ul>
+                    <h4 class="text-xl my-5">Related Posts</h4>
+                    <ul class="list-disc list-inside">
                     {% endif %}
-                    <li class="relatedPost">
+                    <li class="pl-8">
                         <a href="{{ site.url }}{{ post.url }}">{{ post.title }}
                         {% if post.series %}
                             (Series: {{ post.series }})

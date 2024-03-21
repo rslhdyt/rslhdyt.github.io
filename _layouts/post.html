@@ -2,17 +2,17 @@
 layout: page
 ---
 
-<h1 class="title">{{ page.title }}</h1>
+<h1 class="text-3xl text-center tracking-tight font-bold mb-5">{{ page.title }}</h1>
 
-<span class="date">
+<span class="block text-center mb-5">
     <time datetime="{{ page.date | date:"%d-%m-%Y" }}">{{ page.date | date: "%A. %B %d, %Y" }}</time>
     {% if site.read-time %} - {% include read-time.html %}{% endif %}
 </span>
 
 {% if site.show-tags %}
-    <div class="post-tags">
+    <div class="flex flex-row space-x-1.5 justify-center mb-10">
         {% for tag in page.tags %}
-            <a class="item" href="{{ site.url }}/tags/#{{ tag | slugify }}">{{ tag }}</a>
+            <a class="bg-gray-200 px-2 rounded-sm font-thin" href="{{ site.url }}/tags/#{{ tag | slugify }}">{{ tag }}</a>
         {% endfor %}
     </div>
 {% endif %}
@@ -20,7 +20,7 @@ layout: page
 {{content}}
 
 {% if site.post-advance-links contains page.category %}
-    <div class="blog-navigation">
+    <div class="grid grid-cols-2 text-sm">
         {% if page.previous.hidden == false and page.previous.url %}
             <a class="prev" href="{{ site.url }}{{ page.previous.url }}">&laquo; {{ page.previous.title }}</a>
         {% else %}

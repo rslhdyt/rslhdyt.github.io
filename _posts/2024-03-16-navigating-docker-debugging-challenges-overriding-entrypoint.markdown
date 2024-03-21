@@ -19,9 +19,7 @@ last_edited_by_id: 6b2c6a42-5dc5-4108-b726-4c02437b814d
 
 ![](https://images.unsplash.com/photo-1703227373720-cff89520dd31?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb)
 
-<em></em>
-
-Image from [Bern Dittrich](https://unsplash.com/@hdbernd) from Unsplash
+<em>Image from [Bern Dittrich](https://unsplash.com/@hdbernd) from Unsplash</em>
 
 Debugging a Docker container that won't run can be hard. It's even harder when an image fails to run in different environments because of missing configurations.
 

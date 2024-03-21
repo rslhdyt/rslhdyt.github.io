@@ -4,3 +4,42 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+p {
+    line-height: 1.7;
+    color: #666;
+    font-weight: 300;
+    margin-bottom: 20px;
+    letter-spacing: .4px
+}
+
+p em {
+    @apply flex justify-center;
+}
+
+pre code.hljs {
+    font-size: 12px; /* adjust as needed */
+}
+
+.highlighter-rouge {
+    margin-bottom: 20px;
+}
+
+code {
+    padding: 2px 3px;
+    font-family: "Consolas",Liberation Mono,Menlo,Courier,monospace;
+    font-size: 12px;
+    vertical-align: middle;
+    background: #eee;
+    border-radius: 2px
+}
+
+.post img {
+    @apply w-full;
+}
+
+a {
+    color: #3498db;
+    text-decoration: none;
+    transition: all .3s;
+}
