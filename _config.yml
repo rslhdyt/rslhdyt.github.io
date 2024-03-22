@@ -8,7 +8,7 @@ description: A blog about technology and stuff related
 # if it's an external image, update below for true
 # better with square images
 external-image: false
-picture: assets/images/profile.jpeg
+picture: assets/images/profile-lego.jpeg
 
 # your site color theme, true for dark theme, 
 # false to light theme, auto to switch with system.
@@ -26,7 +26,7 @@ url: https://rslhdyt.github.io
 permalink: /:title/
 
 # To enable google analytics, supply your token below
-analytics-google: 'GT-T5MRBXN'
+analytics-google: 'G-2LTH48DE8D'
 
 # if you don't want comments in your posts, leave categories empty
 disqus:
@@ -98,6 +98,7 @@ defaults:
       # setting all post to not hidden by default,
       # can be overridden in the front matter for a specific post
       hidden: false
+      layout: post
 
 plugins:
   - jekyll-seo-tag
@@ -126,3 +127,8 @@ exclude:
     "bin",
     "node_modules"
   ]
+
+tag_page_layout: tag
+tag_page_dir: tags
+
+ignored_tags: [tips]

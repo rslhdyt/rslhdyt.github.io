@@ -41,9 +41,9 @@ layout: compress
             <div class="post">
         {% else %}
             {% if showHeader != true %}
-                <div class="{{ page_title_class }}">
+                <div class="{{ page_title_class | slugify }}">
             {% else %}
-                <div class="{{ page_title_class }}">
+                <div class="{{ page_title_class | slugify }}">
             {% endif %}
         {% endif %}
                     {{ content }}

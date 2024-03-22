@@ -1,18 +1,6 @@
 ---
-layout: page
+layout: journey
 ---
-<h1 class="title">{{ page.title }}</h1>
+<h1 class="text-3xl text-center tracking-tight font-bold mb-5">{{ page.title }}</h1>
 
 {{content}}
-
-<div class="related">
-    {% assign posts_with_tag = site.posts | where_exp: "post", "post.tags contains 'webhookdump'" | sort: 'date', 'last' %}
-    {% for post in posts_with_tag  %}
-        <ul>
-            <li class="relatedPost">
-                <a href="{{ site.url }}{{ post.url }}">#{{ forloop.index }} {{ post.title }}
-                </a>
-            </li>
-        </ul>
-    {% endfor %}
-</div>

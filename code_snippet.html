@@ -5,8 +5,39 @@ layout: page
 title: Code Snippet
 pagination:
   enabled: true
+random_colors:
+  - bg-blue-700
+  - bg-blue-600
+  - bg-blue-800
+  - bg-green-700
+  - bg-green-600
+  - bg-green-800
+  - bg-yellow-700
+  - bg-yellow-600
+  - bg-yellow-800
+  - bg-red-700
+  - bg-red-600
+  - bg-red-800
+  - bg-purple-700
+  - bg-purple-600
+  - bg-purple-800
+  - bg-red-500
+  - bg-red-600
+  - bg-red-800
+  - bg-indigo-700
+  - bg-indigo-600
+  - bg-cyan-700
+  - bg-cyan-600
+  - bg-cyan-800
+tags: [ruby, rails, js, go]
 ---
 <section class="list">
+	<div class="text-center space-x-1.5 justify-center mb-10">
+		{% for tag in page.tags %}
+			<a class="{{ page.random_colors | sample }} text-white px-2 rounded-sm font-thin whitespace-nowrap" href="/tags/{{ tag | slugify }}">{{ tag }}</a>
+		{% endfor %}
+	</div>
+
 	{% assign code_snippets = site.posts | where: "category", "code_snippet" %}
 
 	{% if code_snippets.size == 0 %}

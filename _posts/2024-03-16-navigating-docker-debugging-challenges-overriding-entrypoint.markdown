@@ -1,6 +1,6 @@
 ---
 tags: ["docker", "tips"]
-date: 2024-03-16 00:00:00 +0700
+date: 2024-03-16
 description: The process of debugging a Docker container that refuses to run can be challenging, especially when an image fails across various environments due to missing configurations. This article provides a solution to this issue by explaining how to override the ENTRYPOINT using the --entrypoint flag.
 published: true
 category: blog

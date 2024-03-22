@@ -1,5 +1,5 @@
 ---
-tags: []
+tags: [rails]
 date: 2024-02-19
 description: A tool for software engineers to debug HTTP callbacks efficiently. Create a URL, hit it with another service, and inspect the request details instantly!
 published: true
@@ -12,6 +12,7 @@ last_edited_time: 2024-02-19T02:37:00+00:00
 archived: false
 layout: project
 comments: false
+project_id: webhookdump
 ---
 
 <!-- create column -->
@@ -23,5 +24,5 @@ comments: false
 
 WebhookDump represents my approach to constructing a scalable system. My inspiration lies in incorporating diverse concepts from the field of system design, encompassing elements such as containerization and observability. 🚀
 
-Read about the journey of building it on my [blog](/tags/#webhookdump).
+Read about the journey of building it on my [blog](/blog).
 

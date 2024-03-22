@@ -1,0 +1,68 @@
+---
+layout: compress
+---
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+
+    {% if site.analytics-google %}
+        {% include analytics-google.html %}
+    {% endif %}
+
+    <meta charset="utf-8">
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <meta name=author content="{{ site.title }}">
+
+    {% seo %}
+
+    {% include favicon.html %}
+
+    <link rel="canonical" href="{{ site.url }}{{ page.url | replace:'index.html','' }}">
+    <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ site.url }}{{ "/feed.xml" }}" />
+
+    <script src="https://kit.fontawesome.com/d9b09040a7.js" crossorigin="anonymous"></script>
+
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <link rel="stylesheet" href="{{ "/assets/css/main.css" | relative_url }}">
+</head>
+<body class="bg-zinc-50">
+    <div class="flex flex-col md:flex-row mx-auto w-11/12 mt-5">
+        <div class="w-full md:w-2/5 lg:w-1/5 text-center md:mb-10">
+            {{ content }}
+        </div>
+        <div class="w-full md:w-3/5 lg:w-4/5 md:ml-10 mb-20">
+            <div class="border border-gray-300 rounded-lg border-solid">
+                <div class="flex flex-wrap p-3">
+                    {% if page.tags %}
+                        <div class="flex flex-row space-x-1.5 justify-center">
+                            {% for tag in page.tags %}
+                                <a class="bg-red-500 px-2 rounded-sm font-thin text-white" href="{{ site.url }}/tags/{{ tag | slugify }}">{{ tag }}</a>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- generate dummy post with card, and the numbers of column is 3 -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
+                {% assign posts_with_tag = site.posts | where_exp: "post", "post.tags contains page.project_id" | sort: 'date', 'last' %}
+                {% for post in posts_with_tag  %}
+                    <div class="grow border border-gray-300 rounded-lg border-solid">
+                        <div class="p-3">
+                            <a href="{{ site.url }}{{ post.url }}">
+                                <h2 class="text-md font-bold">#{{ forloop.index }} {{ post.title }}</h2>
+                            </a>
+                            <p class="text-sm text-gray-500"><time datetime="{{ page.date | date:"%d-%m-%Y" }}">{{ page.date | date: "%B %d, %Y" }}</time></p>
+                            <p class="text-sm text-gray-500">{{ post.description | truncatewords: 20 }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

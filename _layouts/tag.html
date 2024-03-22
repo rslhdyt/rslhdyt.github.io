@@ -1,0 +1,13 @@
+---
+layout: page
+pagination:
+  enabled: true
+---
+
+<h1 class="text-3xl text-center tracking-tight font-bold mb-5">#{{ page.tag }}</h1>
+
+<section class="list space-y-7">
+    {% for post in page.posts %}
+        {% include blog-post.html %}
+    {% endfor %}
+</section>

@@ -34,12 +34,14 @@ code {
     border-radius: 2px
 }
 
+a {
+    @apply text-cyan-600 no-underline transition-all duration-300;
+}
+
 .post img {
     @apply w-full;
 }
 
-a {
-    color: #3498db;
-    text-decoration: none;
-    transition: all .3s;
+.about-me img {
+    @apply w-6/12 rounded-md mx-auto;
 }
