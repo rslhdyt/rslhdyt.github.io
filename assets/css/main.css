@@ -45,3 +45,25 @@ a {
 .about-me img {
     @apply w-6/12 rounded-md mx-auto;
 }
+
+ol {
+    list-style: decimal;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+ol li {
+    line-height: 1.7;
+    color: #666;
+    font-weight: 300;
+    letter-spacing: .4px
+}
+
+strong {
+    font-weight: 500;
+    @apply text-gray-800;
+}
+
+.post > h2 {
+    @apply text-lg font-bold text-gray-800 mb-[20px];
+}

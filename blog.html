@@ -6,15 +6,15 @@ title: Blog
 pagination:
   enabled: true
 ---
+{% assign blogs = site.posts | where: "category", "blog" %}
 
-{% assign blogs = site.posts | where: "category", "code_snippet" %}
 <section class="space-y-7">
 	{% if blogs.size == 0 %}
 		<p class="text-center">Nothing published yet!</p>
 	{% elsif site.pagination.enabled %}
 		{% for post in paginator.posts %}
 			{% if post.category == 'blog' %}
-				{% if post.hidden != true %}
+				{% if post.published == true %}
 					{% include blog-post.html %}
 				{% endif %}
 			{% endif %}
@@ -23,7 +23,7 @@ pagination:
 		{% include pagination.html%}
 	{% else %}
 		{% for post in blogs %}	
-			{% if post.hidden != true %}
+			{% if post.published %}
 				{% include blog-post.html %}
 			{% endif %}
 		{% endfor %}

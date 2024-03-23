@@ -1,6 +1,6 @@
 ---
-tags: ["webhookdump"]
-date: 2024-02-19 00:00:00 +0700
+tags: ["webhookdump", "rails"]
+date: 2024-02-15 00:00:00 +0700
 description: A tool for software engineers to debug HTTP callbacks efficiently. Create a URL, hit it with another service, and inspect the request details instantly!
 published: true
 collection: projects
@@ -10,7 +10,7 @@ title: Webhookdump
 created_time: 2024-03-23T04:10:00.000Z
 cover: 
 icon: 
-last_edited_time: 2024-03-23T14:02:00.000Z
+last_edited_time: 2024-03-23T15:07:00.000Z
 archived: false
 created_by_object: user
 created_by_id: 6b2c6a42-5dc5-4108-b726-4c02437b814d

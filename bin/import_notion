@@ -5,35 +5,36 @@ require 'bundler/setup'
 require "notion"
 require "notion_to_md"
 require 'open-uri'
+require 'date'
 
 notion_secret = ENV['NOTION_SECRET']
 database_id = ENV['NOTION_DATABASE_ID']
 
 notion_client = Notion::Client.new(token: notion_secret)
 
-# read the database and filter based on published status field with checkbox
+# get the last fetched time
+# check last fetched existence
+if File.exist?('bin/.last_fetched')
+  beginning_of_day = File.read('bin/.last_fetched').chomp
+else
+  datetime = DateTime.now
+  beginning_of_day = datetime.to_date.to_time.to_datetime.iso8601
+end
+
 database = notion_client.database_query(
   database_id: database_id,
-  filter: { 'or': [{ property: "Published", checkbox: { equals: true } } ] }
+  filter: { 
+    timestamp: 'last_edited_time',
+    last_edited_time: {
+      after: beginning_of_day
+    }
+  }
 )
 
-module NotionToMd
-  # class Page
-  #   def frontmatter
-  #     @frontmatter ||= <<~CONTENT
-  #       ---
-  #       #{props.to_a.map do |k, v|
-  #           if k.to_s == 'title'
-  #             "title: \"#{v}\""
-  #           else
-  #             "#{k}: #{v}"
-  #           end
-  #         end.join("\n")}
-  #       ---
-  #     CONTENT
-  #   end
-  # end
+puts "Start fetching pages from Notion..."
+puts "Total pages: #{database.results.size} from #{beginning_of_day}"
 
+module NotionToMd
   module Blocks
     class Types
       class << self
@@ -70,11 +71,15 @@ database.results.each do |page|
   date = page.properties['Date']['date']['start']
   collection = page.properties['Collection']['select']['name']
   
+  if collection.empty?
+    puts "Collection not found for #{title}" 
+    next
+  end
+
   notion_converter = NotionToMd::Converter.new(page_id: page.id, token: notion_secret)
   md = notion_converter.convert(frontmatter: true)
   
   raise "No content found for #{title}" if md.empty?
-  raise "Collection not found for #{title}" if collection.empty?
 
   # check if file exists
   filename_with_path = "_#{collection}/#{date}-#{sluggable_title}.markdown"
@@ -82,3 +87,5 @@ database.results.each do |page|
   File.write(filename_with_path, md)
 end
 
+# puts latest fetched time into a file
+File.write('bin/.last_fetched', DateTime.now.iso8601)

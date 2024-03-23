@@ -2,8 +2,10 @@
 layout: page
 title: Projects
 ---
-<section class="list">
+<section class="space-y-7">
     {% for post in site.projects %}
-        {% include blog-post.html %}
+        {% if post.published == true %}
+            {% include blog-post.html %}
+        {% endif %}
     {% endfor %}
 </section>
