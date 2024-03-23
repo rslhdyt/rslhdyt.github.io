@@ -1,0 +1,53 @@
+<!DOCTYPE html> <html lang="en" class="h-full"> <head> <!-- Global site tag (gtag.js) - Google Analytics --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-2LTH48DE8D"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-2LTH48DE8D'); </script> <meta charset="utf-8"> <meta name=viewport content="width=device-width, initial-scale=1"> <meta name=author content="Risal Hidayat"> <!-- Begin Jekyll SEO tag v2.8.0 --> <title>Setting Up a Rails Project for Webhookdump | Risal Hidayat</title> <meta name="generator" content="Jekyll v4.2.2" /> <meta property="og:title" content="Setting Up a Rails Project for Webhookdump" /> <meta property="og:locale" content="en_US" /> <meta name="description" content="The journey has begun! Let’s set up a new rails project for the Webhookdump application." /> <meta property="og:description" content="The journey has begun! Let’s set up a new rails project for the Webhookdump application." /> <link rel="canonical" href="https://rslhdyt.dev/setting-up-a-rails-project-for-webhookdump/" /> <meta property="og:url" content="https://rslhdyt.dev/setting-up-a-rails-project-for-webhookdump/" /> <meta property="og:site_name" content="Risal Hidayat" /> <meta property="og:type" content="article" /> <meta property="article:published_time" content="2024-02-28T17:00:00+00:00" /> <meta name="twitter:card" content="summary" /> <meta property="twitter:title" content="Setting Up a Rails Project for Webhookdump" /> <meta name="twitter:site" content="@" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-02-28T17:00:00+00:00","datePublished":"2024-02-28T17:00:00+00:00","description":"The journey has begun! Let’s set up a new rails project for the Webhookdump application.","headline":"Setting Up a Rails Project for Webhookdump","mainEntityOfPage":{"@type":"WebPage","@id":"https://rslhdyt.dev/setting-up-a-rails-project-for-webhookdump/"},"url":"https://rslhdyt.dev/setting-up-a-rails-project-for-webhookdump/"}</script> <!-- End Jekyll SEO tag --> <link rel="apple-touch-icon" sizes="180x180" href="https://rslhdyt.dev/assets/images/favicon/apple-touch-icon.png"> <link rel="icon" type="image/png" sizes="32x32" href="https://rslhdyt.dev/assets/images/favicon/favicon-32x32.png"> <link rel="icon" type="image/png" sizes="16x16" href="https://rslhdyt.dev/assets/images/favicon/favicon-16x16.png"> <link rel="manifest" href="https://rslhdyt.dev/site.webmanifest"> <link rel="canonical" href="https://rslhdyt.dev/setting-up-a-rails-project-for-webhookdump/"> <link rel="alternate" type="application/rss+xml" title="Risal Hidayat" href="https://rslhdyt.dev/feed.xml" /> <script src="https://kit.fontawesome.com/d9b09040a7.js" crossorigin="anonymous"></script> <!-- highlight.js --> <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css"> <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script> <script>hljs.highlightAll();</script> <link rel="stylesheet" href="/assets/css/main.css"> </head> <body class="bg-zinc-50 flex h-full"> <div class="max-w-[600px] flex flex-col mx-auto w-11/12"> <div class="post"> <nav class=" mt-7 md:mt-10 mb-10"> <ul class="flex flex-row justify-center space-x-6 text-l text-gray-500"> <li> <a href="https://rslhdyt.dev/">Home</a> </li> <li> <a href="https://rslhdyt.dev/blog">Blog</a> </li> <li class="item hidden sm:block"> <a href="https://rslhdyt.dev/code_snippet">Code Snippet</a> </li> <li> <a href="https://rslhdyt.dev/projects">Projects</a> </li> <li> <a href="https://rslhdyt.dev/about">About</a> </li> </ul> </nav> <h1 class="text-3xl text-center tracking-tight font-bold mb-5">Setting Up a Rails Project for Webhookdump</h1> <span class="block text-center mb-5"> <time datetime="28-02-2024">Wednesday. February 28, 2024</time> - <span class="reading-time" title="Estimated read time"> 2 mins read </span> </span> <div class="flex flex-row space-x-1.5 justify-center mb-10"> <a class="bg-gray-200 px-2 rounded-sm font-thin" href="https://rslhdyt.dev/tags/webhookdump">webhookdump</a> <a class="bg-gray-200 px-2 rounded-sm font-thin" href="https://rslhdyt.dev/tags/journey">journey</a> <a class="bg-gray-200 px-2 rounded-sm font-thin" href="https://rslhdyt.dev/tags/rails">rails</a> </div> <p>The adventure begins! I embarked on a journey to set up a new Rails project for an application—Webhookdump.</p> <p>Before diving into the details, I had to ensure that my local environment was equipped with all the necessary dependencies. For the record, I won’t be diving into the details of how I installed and set up these dependencies.</p> <p>Dependencies:</p> <ol> <li>Ruby</li> <li>Rails gem</li> <li>SQLite3</li> </ol> <p>With the prerequisites in place, the first step on my journey was to create the Rails application for Webhookdump:</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rails new webhookdump
+      create
+      create  README.md
+      create  Rakefile
+      create  .ruby-version
+      create  config.ru
+      create  .gitignore
+      create  .gitattributes
+      ...
+      
+Bundle <span class="nb">complete</span><span class="o">!</span> 15 Gemfile dependencies, 83 gems now installed.
+Use <span class="sb">`</span>bundle info <span class="o">[</span>gemname]<span class="sb">`</span> to see where a bundled gem is installed.
+</code></pre></div></div> <p>Once the project was set up, it was time to configure the database. The database configuration is located in <code class="language-plaintext highlighter-rouge">config/database.yml</code>. By default, Rails uses SQLite as its database. I decided to modify the database name to match the project name.</p> <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># SQLite. Versions 3.8.0 and up are supported.</span>
+<span class="c1">#   gem install sqlite3</span>
+<span class="c1">#</span>
+<span class="c1">#   Ensure the SQLite 3 gem is defined in your Gemfile</span>
+<span class="c1">#   gem "sqlite3"</span>
+<span class="c1">#</span>
+<span class="na">default</span><span class="pi">:</span> <span class="nl">&amp;default</span>
+  <span class="na">adapter</span><span class="pi">:</span> <span class="s">sqlite3</span>
+  <span class="na">pool</span><span class="pi">:</span> <span class="s">&lt;%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %&gt;</span>
+  <span class="na">timeout</span><span class="pi">:</span> <span class="m">5000</span>
+
+<span class="na">development</span><span class="pi">:</span>
+  <span class="na">&lt;&lt;</span><span class="pi">:</span> <span class="nv">*default</span>
+  <span class="na">database</span><span class="pi">:</span> <span class="s">storage/webhookdump_development.sqlite3</span>
+
+<span class="c1"># Warning: The database defined as "test" will be erased and</span>
+<span class="c1"># re-generated from your development database when you run "rake".</span>
+<span class="c1"># Do not set this db to the same as development or production.</span>
+<span class="na">test</span><span class="pi">:</span>
+  <span class="na">&lt;&lt;</span><span class="pi">:</span> <span class="nv">*default</span>
+  <span class="na">database</span><span class="pi">:</span> <span class="s">storage/webhookdump_test.sqlite3</span>
+
+<span class="na">production</span><span class="pi">:</span>
+  <span class="na">&lt;&lt;</span><span class="pi">:</span> <span class="nv">*default</span>
+  <span class="na">database</span><span class="pi">:</span> <span class="s">storage/webhookdump_production.sqlite3</span>
+
+</code></pre></div></div> <p>Then came the moment of truth. I started the web server by running <code class="language-plaintext highlighter-rouge">rails server</code>.</p> <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rails server
+
+<span class="o">=&gt;</span> Booting Puma
+<span class="o">=&gt;</span> Rails 7.1.3.2 application starting <span class="k">in </span>development
+<span class="o">=&gt;</span> Run <span class="sb">`</span>bin/rails server <span class="nt">--help</span><span class="sb">`</span> <span class="k">for </span>more startup options
+Puma starting <span class="k">in </span>single mode...
+<span class="k">*</span> Puma version: 6.4.2 <span class="o">(</span>ruby 3.3.0-p0<span class="o">)</span> <span class="o">(</span><span class="s2">"The Eagle of Durango"</span><span class="o">)</span>
+<span class="k">*</span>  Min threads: 5
+<span class="k">*</span>  Max threads: 5
+<span class="k">*</span>  Environment: development
+<span class="k">*</span>          PID: 38945
+<span class="k">*</span> Listening on http://127.0.0.1:3000
+<span class="k">*</span> Listening on http://[::1]:3000
+Use Ctrl-C to stop
+</code></pre></div></div> <p>Next, I opened my browser and navigated to <code class="language-plaintext highlighter-rouge">127.0.0.1:3000</code>. And voila!</p> <p><img src="/assets/images/posts/2e86ea52-4819-42c8-8138-95751dd82deb-Untitled.png" alt="" /></p> <p><em></em></p> <p>And that was it - the Rails application, Webhookdump, was now installed on my local machine. In the next chapter of this journey, I’ll share how I began to add features to the application. Stay tuned!</p> <p><br /></p> <div class="grid grid-cols-2 text-sm"> <a class="prev"></a> </div> <div class="related"> <h4 class="text-xl my-5">Related Posts</h4> <ul class="list-disc list-inside"> <li class="pl-8"> <a href="https://rslhdyt.dev/streamline-your-sidekiq-cron-jobs-with-a-single-worker-class-for-rake-task-invocation/">Streamline Your Sidekiq Cron Jobs with a Single Worker Class for Rake Task Invocation </a> </li> <li class="pl-8"> <a href="https://rslhdyt.dev/webhookdump-a-design-overview/">WebhookDump: A Design Overview </a> </li> <li class="pl-8"> <a href="https://rslhdyt.dev/embarking-on-a-learning-adventure/">Embarking on a Learning Adventure </a> </li> <li class="pl-8"> <a href="https://rslhdyt.dev/how-to-create-a-copy-to-clipboard-action-in-stimulus/">How to Create a Copy-to-Clipboard Action in Stimulus </a> </li> <li class="pl-8"> <a href="https://rslhdyt.dev/rails-authentication-setup-omniauth-using-devise/">Rails Authentication: Setup Omniauth using Devise </a> </li> </ul> </div> <footer class="flex justify-center items-center border-solid border-0 border-t border-gray-200 p-10 mt-10"> Risal Hidayat © 2024 </footer> </div> </div> </div> </div> </body> </html>
