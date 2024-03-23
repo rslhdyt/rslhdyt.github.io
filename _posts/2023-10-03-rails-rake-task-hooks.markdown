@@ -3,13 +3,14 @@ tags: ["rails", "tutorial", "tips"]
 date: 2023-10-03 00:00:00 +0700
 description: Adding hooks to rake task
 published: true
+collection: posts
 category: blog
 id: 5d6110f6-1b6b-4939-a98d-2920c41cdd3e
 title: "Rails - Rake Task Hooks"
 created_time: 2022-08-08T04:18:00.000Z
 cover: https://images.unsplash.com/photo-1621298516851-047f72b40bd7?ixlib=rb-1.2.1&q=80&cs=tinysrgb&fm=jpg&crop=entropy
 icon: 
-last_edited_time: 2023-11-17T07:32:00.000Z
+last_edited_time: 2024-03-23T14:01:00.000Z
 archived: false
 created_by_object: user
 created_by_id: 6b2c6a42-5dc5-4108-b726-4c02437b814d

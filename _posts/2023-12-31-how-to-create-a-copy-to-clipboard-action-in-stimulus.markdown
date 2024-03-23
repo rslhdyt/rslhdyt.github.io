@@ -3,13 +3,14 @@ tags: ["code_snippet", "rails", "stimulus"]
 date: 2023-12-31 00:00:00 +0700
 description: The code snippet to add functionality copy text to clipboard using stimulus rails
 published: true
+collection: posts
 category: code_snippet
 id: 1c7ad89c-6e69-4ea8-b1e6-1e937a008942
 title: How to Create a Copy-to-Clipboard Action in Stimulus
 created_time: 2023-12-31T16:28:00.000Z
 cover: 
 icon: 
-last_edited_time: 2024-01-14T15:35:00.000Z
+last_edited_time: 2024-03-23T14:01:00.000Z
 archived: false
 created_by_object: user
 created_by_id: 6b2c6a42-5dc5-4108-b726-4c02437b814d

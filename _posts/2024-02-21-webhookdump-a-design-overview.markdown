@@ -3,13 +3,14 @@ tags: ["webhookdump", "journey"]
 date: 2024-02-21 00:00:00 +0700
 description: WebhookDump is a web application designed to intercept and store HTTP requests for later analysis. Its core functionalities include generating unique URLs for clients, receiving and capturing request data (such as headers and body), and providing real-time monitoring of incoming requests. Initially, the application follows a monolithic structure with a single server, built using Ruby on Rails. The data is stored in an SQLite database, and real-time updates are facilitated through Action Cable, which integrates WebSockets. This technology stack emphasizes simplicity, efficiency, and seamless interaction between components. 🚀
 published: true
+collection: posts
 category: blog
 id: 43f4e2e4-ef05-4c89-8b88-50d3f9749f40
 title: "WebhookDump: A Design Overview"
 created_time: 2024-02-22T12:47:00.000Z
 cover: 
 icon: 
-last_edited_time: 2024-02-22T17:01:00.000Z
+last_edited_time: 2024-03-23T14:01:00.000Z
 archived: false
 created_by_object: user
 created_by_id: 6b2c6a42-5dc5-4108-b726-4c02437b814d

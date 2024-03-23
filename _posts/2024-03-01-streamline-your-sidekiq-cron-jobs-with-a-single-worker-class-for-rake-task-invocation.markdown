@@ -3,13 +3,14 @@ tags: ["rails", "sidekiq", "sidekiq-cron"]
 date: 2024-03-01 00:00:00 +0700
 description: Optimize Sidekiq Cron with a Single Worker Class for Rake Tasks. Simplify configuration, improve maintenance, and enhance testing capabilities. Streamline your Rails app's background job scheduling today!
 published: true
+collection: posts
 category: blog
 id: 1bd16ab6-e1ec-4588-b78a-4898d7df76e0
 title: Streamline Your Sidekiq Cron Jobs with a Single Worker Class for Rake Task Invocation
 created_time: 2024-03-02T06:37:00.000Z
 cover: 
 icon: 
-last_edited_time: 2024-03-02T08:00:00.000Z
+last_edited_time: 2024-03-23T14:01:00.000Z
 archived: false
 created_by_object: user
 created_by_id: 6b2c6a42-5dc5-4108-b726-4c02437b814d
@@ -17,7 +18,7 @@ last_edited_by_object: user
 last_edited_by_id: 6b2c6a42-5dc5-4108-b726-4c02437b814d
 ---
 
-![](/assets/images/posts/giphy.gif)
+![](https://media3.giphy.com/media/rytLWOErAX1F6/giphy.gif?cid=7941fdc631ow1c0odtfzkiifp1koqyox9jvx7qe7zat8fxhr&ep=v1_gifs_search&rid=giphy.gif&ct=g)
 
 <em></em>
 

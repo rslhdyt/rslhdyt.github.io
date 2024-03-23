@@ -3,13 +3,14 @@ tags: ["tips", "feature-toggle"]
 date: 2023-11-21 00:00:00 +0700
 description: In this guide, we'll dig into this scenario, explaining how Flipper acts as the bridge between your frontend and backend. By the end, you'll know how to use Flipper to take charge of your feature toggles, making your application more adaptable and user-friendly. Let's make managing feature toggles easy with Flipper!
 published: true
+collection: posts
 category: blog
 id: 5b52466d-13e7-45dd-9126-348383b3be64
 title: "Flipper: Retrieve a List of Features for an Actor"
 created_time: 2023-11-20T23:58:00.000Z
 cover: 
 icon: 
-last_edited_time: 2023-11-22T02:16:00.000Z
+last_edited_time: 2024-03-23T14:01:00.000Z
 archived: false
 created_by_object: user
 created_by_id: 6b2c6a42-5dc5-4108-b726-4c02437b814d
@@ -88,7 +89,5 @@ end
   }
 }
 ```
-
-<br />
 
 

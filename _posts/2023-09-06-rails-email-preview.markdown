@@ -3,13 +3,14 @@ tags: ["rails", "email", "testing"]
 date: 2023-09-06 00:00:00 +0700
 description: Previewing your mailer class in rails
 published: true
+collection: posts
 category: blog
 id: a26783a3-ea2a-455c-8d57-2c23c7dbcc35
 title: Rails Email Preview
 created_time: 2022-10-26T07:13:00.000Z
 cover: 
 icon: 
-last_edited_time: 2023-12-08T03:08:00.000Z
+last_edited_time: 2024-03-23T14:01:00.000Z
 archived: false
 created_by_object: user
 created_by_id: 6b2c6a42-5dc5-4108-b726-4c02437b814d
@@ -58,13 +59,13 @@ Then, you can check the email preview by accessing this url in your local url de
 
 If everything goes right, you will see the list available email preview like this.
 
-![](/assets/images/posts/Untitled.png)
+![](/assets/images/posts/7f7cdfba-29b7-45bc-8e98-dde02f4864bd-Untitled.png)
 
 <em></em>
 
 And if you click the welcome email preview it will show the preview of user mailer welcome.
 
-![](/assets/images/posts/Untitled.png)
+![](/assets/images/posts/745e2fef-1c12-4aa5-93ef-5ed5cdb0d837-Untitled.png)
 
 <em></em>
 

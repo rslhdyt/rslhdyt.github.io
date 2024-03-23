@@ -49,7 +49,7 @@ layout: compress
 
             <!-- generate dummy post with card, and the numbers of column is 3 -->
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
-                {% assign posts_with_tag = site.posts | where_exp: "post", "post.tags contains page.project_id" | sort: 'date', 'last' %}
+                {% assign posts_with_tag = site.posts | where_exp: "post", "post.tags contains page.tags[0]" | sort: 'date', 'last' %}
                 {% for post in posts_with_tag  %}
                     <div class="grow border border-gray-300 rounded-lg border-solid">
                         <div class="p-3">

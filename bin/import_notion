@@ -40,23 +40,22 @@ module NotionToMd
         def image(block)
           type = block[:type].to_sym
           url = URI.parse(block.dig(type, :url))
-          # https://example.com/filename.jpg?queryParams -> filename.jpg
-          filename = "assets/images/posts/#{url.to_s.split('/')[-1].split('?')[0]}"
           
-          # we can also retrieve a caption here like this:
-          image_md = "![](/#{filename})"
-          image_md = "![](#{url})" if url.to_s.include?('unsplash.com')
-          
-          IO.copy_stream(url.open, filename) if !File.exist?(filename)
-          
+          image_md = "![](#{url})" 
+
+          if type == :file
+            filename = url.path.split('/')[-2..-1].join('-')
+            filename_path = "assets/images/posts/#{filename}"
+            
+            # download the image if it doesn't exist
+            IO.copy_stream(url.open, filename_path) unless File.exist?(filename_path)
+
+            image_md = "![](/#{filename_path})"
+          end
+
           caption = convert_caption(block)
 
-          image_md = "#{image_md}\n\n<em>#{caption}</em>"
-
-          return image_md
-          # or you can use jekyll_picture_tag plugin and return liquid 
-          # tag "picture" here, which automatically generates responsive 
-          # images for you.
+          return "#{image_md}\n\n<em>#{caption}</em>"
         end
       end
     end
@@ -69,12 +68,16 @@ database.results.each do |page|
   title = page.properties['Name']['title'][0]['plain_text']
   sluggable_title = title.downcase.gsub(/[^a-z0-9]+/, '-').chomp('-')
   date = page.properties['Date']['date']['start']
+  collection = page.properties['Collection']['select']['name']
   
   notion_converter = NotionToMd::Converter.new(page_id: page.id, token: notion_secret)
   md = notion_converter.convert(frontmatter: true)
   
+  raise "No content found for #{title}" if md.empty?
+  raise "Collection not found for #{title}" if collection.empty?
+
   # check if file exists
-  filename_with_path = "_posts/#{date}-#{sluggable_title}.markdown"
+  filename_with_path = "_#{collection}/#{date}-#{sluggable_title}.markdown"
 
   File.write(filename_with_path, md)
 end

@@ -2,13 +2,14 @@
 tags: ["rails", "tutorial"]
 date: 2023-11-24 00:00:00 +0700
 published: true
+collection: posts
 category: blog
 id: adf9890d-36ff-4374-98d0-38aa9d9d5ddd
 title: "Rails Authentication: Setup Omniauth using Devise"
 created_time: 2023-11-13T02:31:00.000Z
 cover: 
 icon: 
-last_edited_time: 2023-11-30T02:15:00.000Z
+last_edited_time: 2024-03-23T14:01:00.000Z
 archived: false
 created_by_object: user
 created_by_id: 6b2c6a42-5dc5-4108-b726-4c02437b814d
@@ -38,19 +39,19 @@ I assumed you have google cloud platform account and project. those information 
 
 Go to google console and go to APIs & Service menu and select submenu Credentials
 
-![](/assets/images/posts/Untitled.png)
+![](/assets/images/posts/4667ee20-697a-4111-8e32-dc2aba35ed99-Untitled.png)
 
 <em></em>
 
 On the credentials page, click the Create Credentials button and choose the Oauth Client ID dropdown option
 
-![](/assets/images/posts/Untitled.png)
+![](/assets/images/posts/871ea8c2-828c-46a4-90aa-6a2fff175a3a-Untitled.png)
 
 <em></em>
 
 Select `Web applications` and provide a name. Under the `Authorized redirect URIs` add the path to callback endpoint. I put `http://localhost:3000/auth/google_oauth2/callback`.
 
-![](/assets/images/posts/Untitled.png)
+![](/assets/images/posts/1b58e32c-53c4-4b61-aafa-8e78d7a64532-Untitled.png)
 
 <em></em>
 
@@ -61,7 +62,7 @@ GOOGLE_CLIENT_ID=YOUR_CLIENT_ID
 GOOGLE_CLIENT_SECRET=YOUR_CLIENT_SECRET
 ```
 
-![](/assets/images/posts/Untitled.png)
+![](/assets/images/posts/0168a681-8603-402f-838a-11156a4f8926-Untitled.png)
 
 <em></em>
 
@@ -88,9 +89,5 @@ Devise.setup do |config|
   ...
 end
 ```
-
-<br />
-
-<br />
 
 

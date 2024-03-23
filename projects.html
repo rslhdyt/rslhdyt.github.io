@@ -3,9 +3,7 @@ layout: page
 title: Projects
 ---
 <section class="list">
-    {% assign projects = site.posts | where: "category", "project" %}
-    
-    {% for post in projects %}
+    {% for post in site.projects %}
         {% include blog-post.html %}
     {% endfor %}
 </section>
