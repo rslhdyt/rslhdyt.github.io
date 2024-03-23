@@ -56,7 +56,7 @@ layout: compress
                             <a href="{{ site.url }}{{ post.url }}">
                                 <h2 class="text-md font-bold">#{{ forloop.index }} {{ post.title }}</h2>
                             </a>
-                            <p class="text-sm text-gray-500"><time datetime="{{ page.date | date:"%d-%m-%Y" }}">{{ page.date | date: "%B %d, %Y" }}</time></p>
+                            <p class="text-sm text-gray-500"><time datetime="{{ post.date | date:"%d-%m-%Y" }}">{{ post.date | date: "%B %d, %Y" }}</time></p>
                             <p class="text-sm text-gray-500">{{ post.description | truncatewords: 20 }}</p>
                         </div>
                     </div>
