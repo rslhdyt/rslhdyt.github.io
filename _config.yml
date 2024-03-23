@@ -68,7 +68,7 @@ collections:
     permalink: /projects/:title/
 
 # if you don't need projects, comment the *projects* configs below
-projects: true
+project: true
 
 code_snippet: true
 
@@ -100,11 +100,13 @@ defaults:
       path: ""
       type: "posts"
     values:
+      published: false
       layout: post
   - scope:
       path: _projects
       type: "projects"
     values:
+      published: false
       layout: project
 
 plugins:
