@@ -42,7 +42,7 @@ a {
 }
 
 .about-me img {
-    @apply w-6/12 rounded-md mx-auto;
+    @apply w-2/5 rounded-md mx-auto;
 }
 
 strong {
