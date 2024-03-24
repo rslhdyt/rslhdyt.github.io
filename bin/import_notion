@@ -55,8 +55,9 @@ module NotionToMd
           end
 
           caption = convert_caption(block)
+          image_md += "\n<em>#{caption}</em>" unless caption.empty?
 
-          return "#{image_md}\n\n<em>#{caption}</em>"
+          return image_md
         end
       end
     end

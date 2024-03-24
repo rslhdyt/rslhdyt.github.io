@@ -20,8 +20,6 @@ last_edited_by_id: 6b2c6a42-5dc5-4108-b726-4c02437b814d
 
 ![](https://images.unsplash.com/photo-1536825211030-094de935f680?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb)
 
-<em></em>
-
 Welcome to the first entry in my journey of creating a web application from scratch. This won't be just any application, but a clone of an existing application that many of us use daily. Why a clone, you might ask? The answer is simple: learning.
 
 My primary goal here is not to reinvent the wheel, but to understand how the wheel turns, so to speak. By recreating an existing application, I hope to dive deep into the intricacies of its features, the challenges in its creation, and the technology that powers it.

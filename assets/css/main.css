@@ -5,6 +5,18 @@
 @tailwind components;
 @tailwind utilities;
 
+blockquote {
+    @apply bg-sky-200 p-2 mb-5 rounded-md;
+}
+
+blockquote p {
+    @apply mb-0;
+}
+
+blockquote p em {
+    @apply inline;
+}
+
 p {
     line-height: 1.7;
     color: #666;
@@ -21,42 +33,16 @@ pre code.hljs {
     font-size: 12px; /* adjust as needed */
 }
 
-.highlighter-rouge {
-    margin-bottom: 20px;
-}
-
-code {
-    padding: 2px 3px;
-    font-family: "Consolas",Liberation Mono,Menlo,Courier,monospace;
-    font-size: 12px;
-    vertical-align: middle;
-    background: #eee;
-    border-radius: 2px
+code.highlighter-rouge {
+    @apply p-1.5 font-mono text-xs bg-gray-200 rounded-sm text-cyan-600;
 }
 
 a {
     @apply text-cyan-600 no-underline transition-all duration-300;
 }
 
-.post img {
-    @apply w-full;
-}
-
 .about-me img {
     @apply w-6/12 rounded-md mx-auto;
-}
-
-ol {
-    list-style: decimal;
-    margin-left: 20px;
-    margin-bottom: 20px;
-}
-
-ol li {
-    line-height: 1.7;
-    color: #666;
-    font-weight: 300;
-    letter-spacing: .4px
 }
 
 strong {
@@ -64,6 +50,39 @@ strong {
     @apply text-gray-800;
 }
 
-.post > h2 {
+.posts > h2 {
     @apply text-lg font-bold text-gray-800 mb-[20px];
+}
+
+.posts img {
+    @apply w-full;
+}
+
+.posts .highlight {
+    @apply mb-5;
+}
+
+.posts ol {
+    list-style: decimal;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.posts ol li {
+    line-height: 1.7;
+    color: #666;
+    font-weight: 300;
+    letter-spacing: .4px
+}
+
+.posts ul {
+    @apply list-disc ml-5 mb-5;
+}
+
+.posts ul li {
+    line-height: 1.7;
+    color: #666;
+    font-weight: 300;
+    letter-spacing: .4px;
+    margin-bottom: 10px;
 }

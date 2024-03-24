@@ -23,7 +23,7 @@ layout: compress
     <script src="https://kit.fontawesome.com/d9b09040a7.js" crossorigin="anonymous"></script>
 
     <!-- highlight.js -->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/styles/github-dark-dimmed.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/a11y-dark.min.css" integrity="sha512-Vj6gPCk8EZlqnoveEyuGyYaWZ1+jyjMPg8g4shwyyNlRQl6d3L9At02ZHQr5K6s5duZl/+YKMnM3/8pDhoUphg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
 
@@ -37,19 +37,7 @@ layout: compress
     {% endif %}
 
     <div class="max-w-[600px] flex flex-col mx-auto w-11/12">
-        {% if page.layout == "post" %}
-            <div class="post">
-        {% else %}
-            {% if showHeader != true %}
-                <div class="{{ page_title_class | slugify }}">
-            {% else %}
-                <div class="{{ page_title_class | slugify }}">
-            {% endif %}
-        {% endif %}
-                    {{ content }}
-                </div>
-            </div>
-        </div>
+        {{ content }}
     </div>
 </body>
 </html>

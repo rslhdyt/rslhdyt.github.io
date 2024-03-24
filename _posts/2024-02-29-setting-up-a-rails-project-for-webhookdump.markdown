@@ -99,8 +99,6 @@ Next, I opened my browser and navigated to `127.0.0.1:3000`. And voila!
 
 ![](/assets/images/posts/2e86ea52-4819-42c8-8138-95751dd82deb-Untitled.png)
 
-<em></em>
-
 And that was it - the Rails application, Webhookdump, was now installed on my local machine. In the next chapter of this journey, I'll share how I began to add features to the application. Stay tuned!
 
 <br />

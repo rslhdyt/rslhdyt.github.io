@@ -10,7 +10,7 @@ title: "WebhookDump: Database Design"
 created_time: 2024-03-23T23:51:00.000Z
 cover: 
 icon: 
-last_edited_time: 2024-03-24T05:52:00.000Z
+last_edited_time: 2024-03-24T05:57:00.000Z
 archived: false
 created_by_object: user
 created_by_id: 6b2c6a42-5dc5-4108-b726-4c02437b814d
@@ -25,8 +25,6 @@ In this chapter of my journey, I began adding features to the Webhookdump applic
 The design of the Webhookdump application is simple, requiring only two tables to store incoming HTTP request details.
 
 ![](/assets/images/posts/e8bcb268-1665-4750-85d4-4f04e18de497-webhookdump-erb.png)
-
-<em></em>
 
 Here are the definitions for each table, including the fields:
 
@@ -81,10 +79,6 @@ rails generate model webhook_request webhook:references ip:string url:string hos
 Then, I ran `rails db:setup` and `rails db:migrate` to set up and create the new tables in the SQLite database.
 
 ![](/assets/images/posts/0727ad00-9163-49d3-a153-8c2609631255-Untitled.png)
-
-<em></em>
-
----
 
 To validate that the model works as expected, I logged into the Rails console and tried to create a new webhook record.
 
