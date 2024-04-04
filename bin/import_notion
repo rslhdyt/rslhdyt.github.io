@@ -31,8 +31,8 @@ database = notion_client.database_query(
   }
 )
 
-puts "Start fetching pages from Notion..."
-puts "Total pages: #{database.results.size} from #{beginning_of_day}"
+puts "\e[33mStart fetching pages from Notion...\e[0m"
+puts "Total pages: #{database.results.size} from #{beginning_of_day}\n\n"
 
 module NotionToMd
   module Blocks
@@ -59,26 +59,40 @@ module NotionToMd
 
           return image_md
         end
+
+        # https://developers.notion.com/changelog/link-previews-block-and-rich_text-supported-in-response
+        def link_preview(block)
+          url = block[:url]
+
+          "[#{url}](#{url})\n"
+        end
       end
     end
   end
 end
 
+success = 0
+
 database.results.each do |page|
   return if page.object != 'page'
   
   title = page.properties['Name']['title'][0]['plain_text']
+  
+  puts "Fetching page: #{title}"
+  
   sluggable_title = title.downcase.gsub(/[^a-z0-9]+/, '-').chomp('-')
   date = page.properties['Date']['date']['start']
-  collection = page.properties['Collection']['select']['name']
+  collection = page.properties.dig('Collection', 'select', 'name')
   
-  if collection.empty?
-    puts "Collection not found for #{title}" 
+  if collection.nil?
+    puts "\e[31mCollection not found for #{title}.\e[0m"
     next
   end
 
   notion_converter = NotionToMd::Converter.new(page_id: page.id, token: notion_secret)
   md = notion_converter.convert(frontmatter: true)
+
+  puts "Successfully fetched page: #{title}"
   
   raise "No content found for #{title}" if md.empty?
 
@@ -86,7 +100,14 @@ database.results.each do |page|
   filename_with_path = "_#{collection}/#{date}-#{sluggable_title}.markdown"
 
   File.write(filename_with_path, md)
+
+  success += 1
+rescue => e
+  puts "Error: #{e}, #{e.message}"
+  puts "Backtrace: #{e.backtrace}"
 end
 
-# puts latest fetched time into a file
+puts "\nSave the last fetched time."
 File.write('bin/.last_fetched', DateTime.now.iso8601)
+
+puts "\e[32mConverting #{success}/#{database.results.size} pages from Notion.\e[0m"
