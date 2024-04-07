@@ -31,7 +31,7 @@ random_colors:
   - bg-cyan-800
 tags: [ruby, rails, js, go]
 ---
-<section class="list">
+<section class="space-y-7">
 	<div class="text-center space-x-1.5 justify-center mb-10">
 		{% for tag in page.tags %}
 			<a class="{{ page.random_colors | sample }} text-white px-2 rounded-sm font-thin whitespace-nowrap" href="/tags/{{ tag | slugify }}">{{ tag }}</a>
