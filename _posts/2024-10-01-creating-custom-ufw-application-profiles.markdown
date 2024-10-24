@@ -35,7 +35,6 @@ sudo nano /etc/ufw/applications.d/myapp
 title=My Custom Application
 description=Custom ports for my application
 ports=8080,8081/tcp|9090/udp
-
 ```
 
 3. **Update UFW**
@@ -52,7 +51,6 @@ sudo ufw app info MyApp
 ```shell
 sudo ufw allow MyApp
 ```
-
 
 Remember to reload UFW after adding profiles:
 
