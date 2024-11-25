@@ -1,0 +1,141 @@
+<!DOCTYPE html> <html lang="en" class="h-full"> <head> <!-- Global site tag (gtag.js) - Google Analytics --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-2LTH48DE8D"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-2LTH48DE8D'); </script> <meta charset="utf-8"> <meta name=viewport content="width=device-width, initial-scale=1"> <meta name=author content="Risal Hidayat"> <!-- Begin Jekyll SEO tag v2.8.0 --> <title>Handling Incoming Webhooks: The Controller Layer | Risal Hidayat</title> <meta name="generator" content="Jekyll v4.2.2" /> <meta property="og:title" content="Handling Incoming Webhooks: The Controller Layer" /> <meta property="og:locale" content="en_US" /> <meta name="description" content="Learn how we handle incoming webhook requests in WebhookDump using Rails controllers." /> <meta property="og:description" content="Learn how we handle incoming webhook requests in WebhookDump using Rails controllers." /> <link rel="canonical" href="https://rslhdyt.dev/handling-incoming-webhooks-the-controller-layer/" /> <meta property="og:url" content="https://rslhdyt.dev/handling-incoming-webhooks-the-controller-layer/" /> <meta property="og:site_name" content="Risal Hidayat" /> <meta property="og:type" content="article" /> <meta property="article:published_time" content="2024-03-20T17:00:00+00:00" /> <meta name="twitter:card" content="summary" /> <meta property="twitter:title" content="Handling Incoming Webhooks: The Controller Layer" /> <meta name="twitter:site" content="@" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-03-20T17:00:00+00:00","datePublished":"2024-03-20T17:00:00+00:00","description":"Learn how we handle incoming webhook requests in WebhookDump using Rails controllers.","headline":"Handling Incoming Webhooks: The Controller Layer","mainEntityOfPage":{"@type":"WebPage","@id":"https://rslhdyt.dev/handling-incoming-webhooks-the-controller-layer/"},"url":"https://rslhdyt.dev/handling-incoming-webhooks-the-controller-layer/"}</script> <!-- End Jekyll SEO tag --> <link rel="apple-touch-icon" sizes="180x180" href="https://rslhdyt.dev/assets/images/favicon/apple-touch-icon.png"> <link rel="icon" type="image/png" sizes="32x32" href="https://rslhdyt.dev/assets/images/favicon/favicon-32x32.png"> <link rel="icon" type="image/png" sizes="16x16" href="https://rslhdyt.dev/assets/images/favicon/favicon-16x16.png"> <link rel="manifest" href="https://rslhdyt.dev/site.webmanifest"> <link rel="alternate" type="application/rss+xml" title="Risal Hidayat" href="https://rslhdyt.dev/feed.xml" /> <script src="https://kit.fontawesome.com/d9b09040a7.js" crossorigin="anonymous"></script> <!-- highlight.js --> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/a11y-dark.min.css" integrity="sha512-Vj6gPCk8EZlqnoveEyuGyYaWZ1+jyjMPg8g4shwyyNlRQl6d3L9At02ZHQr5K6s5duZl/+YKMnM3/8pDhoUphg==" crossorigin="anonymous" referrerpolicy="no-referrer" /> <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.4.0/highlight.min.js"></script> <script>hljs.highlightAll();</script> <link rel="stylesheet" href="/assets/css/main.css"> </head> <body class="bg-zinc-50 flex h-full"> <div class="max-w-[600px] flex flex-col mx-auto w-11/12"> <nav class=" mt-7 md:mt-10 mb-10"> <ul class="flex flex-row justify-center space-x-6 text-l text-gray-500"> <li> <a href="https://rslhdyt.dev/">Home</a> </li> <li> <a href="https://rslhdyt.dev/blog">Blog</a> </li> <li class="item hidden sm:block"> <a href="https://rslhdyt.dev/code_snippet">Code Snippet</a> </li> <li> <a href="https://rslhdyt.dev/projects">Projects</a> </li> <li> <a href="https://rslhdyt.dev/about">About</a> </li> </ul> </nav> <h1 class="text-3xl text-center tracking-tight font-bold mb-5">Handling Incoming Webhooks: The Controller Layer</h1> <span class="block text-center mb-5"> <time datetime="20-03-2024">Wednesday. March 20, 2024</time> - <span class="reading-time" title="Estimated read time"> 7 mins read </span> </span> <div class="flex flex-row space-x-1.5 justify-center mb-10"> <a class="bg-gray-200 px-2 rounded-sm font-thin" href="https://rslhdyt.dev/tags/webhookdump">webhookdump</a> <a class="bg-gray-200 px-2 rounded-sm font-thin" href="https://rslhdyt.dev/tags/rails">rails</a> </div> <div class="posts"> <blockquote> <p>💡 See the code for this post on the 🔗 <a href="https://github.com/rslhdyt/webhookdump/pull/3">webhook-controllers</a> branch.</p> </blockquote> <p>In the previous chapter, we set up our models to store webhooks and their requests. Now it’s time to build the controllers that will handle incoming HTTP requests and show them to users.</p> <h2 id="setting-up-routes">Setting Up Routes</h2> <p>The webhookdump will have two types of URLs. First, the URL that serves actual HTTP callbacks from clients. Second, the URL to manage or show the webhook’s detailed information. For example, when a client sends a webhook to <code class="language-plaintext highlighter-rouge">webhookdump.link/abc-123</code>, users can view all received requests at <code class="language-plaintext highlighter-rouge">webhookdump.link/v/abc-123</code>. This separation makes it clear which URL is for receiving webhooks and which is for viewing them.</p> <p>Here’s how I configured <code class="language-plaintext highlighter-rouge">config/routes.rb</code>:</p> <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="no">Rails</span><span class="p">.</span><span class="nf">application</span><span class="p">.</span><span class="nf">routes</span><span class="p">.</span><span class="nf">draw</span> <span class="k">do</span>
+  <span class="n">root</span> <span class="s2">"home#index"</span>
+
+  <span class="c1"># Interface for viewing webhook details under 'v' prefix</span>
+  <span class="n">scope</span> <span class="ss">path: </span><span class="s1">'v'</span><span class="p">,</span> <span class="ss">controller: </span><span class="s1">'webhooks'</span> <span class="k">do</span>
+    <span class="n">get</span> <span class="s1">'/:slug'</span><span class="p">,</span> <span class="ss">action: :show</span><span class="p">,</span> <span class="ss">as: :webhook</span>
+    <span class="n">delete</span> <span class="s1">'/:slug'</span><span class="p">,</span> <span class="ss">action: :destroy</span>
+
+    <span class="n">resources</span> <span class="ss">:webhook_requests</span><span class="p">,</span> <span class="ss">only: </span><span class="p">[</span><span class="ss">:show</span><span class="p">,</span> <span class="ss">:destroy</span><span class="p">],</span> 
+              <span class="ss">path: </span><span class="s1">'/:slug'</span><span class="p">,</span> 
+              <span class="ss">controller: </span><span class="s1">'webhook_requests'</span>
+  <span class="k">end</span>
+  
+    <span class="c1"># Main webhook endpoint - keeps URLs as clean as possible</span>
+  <span class="n">match</span> <span class="s1">'/:slug'</span><span class="p">,</span> <span class="ss">to: </span><span class="s1">'webhooks#handler'</span><span class="p">,</span> <span class="ss">via: :any</span><span class="p">,</span> <span class="ss">as: :webhook_handler</span>
+<span class="k">end</span>
+</code></pre></div></div> <p>This routing setup works really well for our needs. When external services want to send webhooks, they can use the shortest possible URL without any extra path segments. Meanwhile, users can easily view their webhook details by adding ‘v’ to the URL path. This clear separation helps prevent confusion between sending and viewing webhooks.</p> <blockquote> <p>💡 If you’re familiar with Rails or any other web frameworks, you might notice that this routing setup breaks some conventional patterns. Typically, Its encourages RESTful routes with resourceful naming - you’d expect paths like <code class="language-plaintext highlighter-rouge">/webhooks/:id</code> instead of our direct <code class="language-plaintext highlighter-rouge">/:id</code>. While following conventions is generally a good practice, I chose to break from it here for a specific reason: user experience. <br /><br /> When developers are copying webhook URLs to paste into third-party services or sharing them with team members, every extra character counts. Having to explain “make sure to include /webhooks/ in the URL” adds unnecessary complexity. By keeping the webhook endpoint as short as possible (/:id), we make the URLs more user-friendly and easier to work with. The viewing interface under /v/ is a fair compromise - it’s still short but clearly separated from the main webhook endpoint.</p> </blockquote> <h2 id="the-webhooks-controller">The Webhooks Controller</h2> <p>The <code class="language-plaintext highlighter-rouge">WebhooksController</code> is the heart of our application. It needs to handle two crucial tasks: showing webhook details to users and processing incoming webhook requests from external sources. Let me walk you through how I built it.</p> <p>Here’s how I implemented it:</p> <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">WebhooksController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="kp">include</span> <span class="no">ApplicationHelper</span>
+
+  <span class="n">before_action</span> <span class="ss">:get_webhook!</span>
+
+  <span class="n">skip_before_action</span> <span class="ss">:verify_authenticity_token</span><span class="p">,</span> <span class="ss">only: </span><span class="p">[</span><span class="ss">:handler</span><span class="p">]</span>
+
+  <span class="k">def</span> <span class="nf">show</span>
+    <span class="vi">@webhook_requests</span> <span class="o">=</span> <span class="vi">@webhook</span><span class="p">.</span><span class="nf">webhook_requests</span><span class="p">.</span><span class="nf">order</span><span class="p">(</span><span class="ss">id: :desc</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">handler</span>
+    <span class="vi">@webhook_request</span> <span class="o">=</span> <span class="vi">@webhook</span><span class="p">.</span><span class="nf">webhook_requests</span><span class="p">.</span><span class="nf">create!</span><span class="p">(</span>
+      <span class="ss">url: </span><span class="n">request</span><span class="p">.</span><span class="nf">url</span><span class="p">,</span>
+      <span class="ss">ip: </span><span class="n">request</span><span class="p">.</span><span class="nf">remote_ip</span><span class="p">,</span>
+      <span class="ss">method: </span><span class="n">request</span><span class="p">.</span><span class="nf">method</span><span class="p">,</span>
+      <span class="ss">host: </span><span class="n">request</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span>
+      <span class="ss">headers: </span><span class="n">request</span><span class="p">.</span><span class="nf">headers</span><span class="p">.</span><span class="nf">to_h</span><span class="p">,</span>
+      <span class="ss">query_params: </span><span class="n">request</span><span class="p">.</span><span class="nf">query_parameters</span><span class="p">.</span><span class="nf">to_json</span><span class="p">,</span>
+      <span class="ss">payload: </span><span class="n">request</span><span class="p">.</span><span class="nf">body</span><span class="p">.</span><span class="nf">read</span>
+    <span class="p">)</span>
+
+    <span class="n">render</span> <span class="ss">plain: </span><span class="s2">"OK"</span>
+  <span class="k">end</span>
+
+  <span class="kp">private</span>
+
+  <span class="k">def</span> <span class="nf">get_webhook!</span>
+    <span class="vi">@webhook</span> <span class="o">=</span> <span class="no">Webhook</span><span class="p">.</span><span class="nf">find_by!</span><span class="p">(</span><span class="ss">slug: </span><span class="n">params</span><span class="p">[</span><span class="ss">:slug</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="vi">@webhook</span><span class="p">.</span><span class="nf">expired?</span>
+      <span class="k">raise</span> <span class="no">WebhookExpired</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+</code></pre></div></div> <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;h1&gt;</span>Webhook Details<span class="nt">&lt;/h1&gt;</span>
+
+<span class="nt">&lt;table&gt;</span>
+  <span class="nt">&lt;tr&gt;</span>
+    <span class="nt">&lt;th&gt;</span>ID<span class="nt">&lt;/th&gt;</span>
+    <span class="nt">&lt;td&gt;&lt;</span><span class="err">%=</span> <span class="err">@</span><span class="na">webhook.id</span> <span class="err">%</span><span class="nt">&gt;&lt;/td&gt;</span>
+  <span class="nt">&lt;/tr&gt;</span>
+  <span class="nt">&lt;tr&gt;</span>
+    <span class="nt">&lt;th&gt;</span>Slug<span class="nt">&lt;/th&gt;</span>
+    <span class="nt">&lt;td&gt;&lt;</span><span class="err">%=</span> <span class="err">@</span><span class="na">webhook.slug</span> <span class="err">%</span><span class="nt">&gt;&lt;/td&gt;</span>
+  <span class="nt">&lt;/tr&gt;</span>
+  <span class="nt">&lt;tr&gt;</span>
+    <span class="nt">&lt;th&gt;</span>Created At<span class="nt">&lt;/th&gt;</span>
+    <span class="nt">&lt;td&gt;&lt;</span><span class="err">%=</span> <span class="err">@</span><span class="na">webhook.created_at</span> <span class="err">%</span><span class="nt">&gt;&lt;/td&gt;</span>
+  <span class="nt">&lt;/tr&gt;</span>
+  <span class="nt">&lt;tr&gt;</span>
+    <span class="nt">&lt;th&gt;</span>Updated At<span class="nt">&lt;/th&gt;</span>
+    <span class="nt">&lt;td&gt;&lt;</span><span class="err">%=</span> <span class="err">@</span><span class="na">webhook.updated_at</span> <span class="err">%</span><span class="nt">&gt;&lt;/td&gt;</span>
+  <span class="nt">&lt;/tr&gt;</span>
+<span class="nt">&lt;/table&gt;</span>
+
+<span class="nt">&lt;h2&gt;</span>Webhook Requests<span class="nt">&lt;/h2&gt;</span>
+<span class="nt">&lt;table&gt;</span>
+  <span class="nt">&lt;thead&gt;</span>
+    <span class="nt">&lt;tr&gt;</span>
+      <span class="nt">&lt;th&gt;</span>ID<span class="nt">&lt;/th&gt;</span>
+      <span class="nt">&lt;th&gt;</span>Method<span class="nt">&lt;/th&gt;</span>
+      <span class="nt">&lt;th&gt;</span>URL<span class="nt">&lt;/th&gt;</span>
+      <span class="nt">&lt;th&gt;</span>IP<span class="nt">&lt;/th&gt;</span>
+      <span class="nt">&lt;th&gt;</span>Created At<span class="nt">&lt;/th&gt;</span>
+    <span class="nt">&lt;/tr&gt;</span>
+  <span class="nt">&lt;/thead&gt;</span>
+  <span class="nt">&lt;tbody&gt;</span>
+    <span class="nt">&lt;</span><span class="err">%</span> <span class="err">@</span><span class="na">webhook_requests.each</span> <span class="na">do</span> <span class="err">|</span><span class="na">webhook_request</span><span class="err">|</span> <span class="err">%</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;tr&gt;</span>
+        <span class="nt">&lt;td&gt;&lt;</span><span class="err">%=</span> <span class="na">link_to</span> <span class="na">webhook_request.id</span><span class="err">,</span> <span class="na">webhook_request_path</span><span class="err">(@</span><span class="na">webhook.slug</span><span class="err">,</span> <span class="na">webhook_request</span><span class="err">)</span> <span class="err">%</span><span class="nt">&gt;&lt;/td&gt;</span>
+        <span class="nt">&lt;td&gt;&lt;</span><span class="err">%=</span> <span class="na">webhook_request.method</span> <span class="err">%</span><span class="nt">&gt;&lt;/td&gt;</span>
+        <span class="nt">&lt;td&gt;&lt;</span><span class="err">%=</span> <span class="na">webhook_request.url</span> <span class="err">%</span><span class="nt">&gt;&lt;/td&gt;</span>
+        <span class="nt">&lt;td&gt;&lt;</span><span class="err">%=</span> <span class="na">webhook_request.ip</span> <span class="err">%</span><span class="nt">&gt;&lt;/td&gt;</span>
+        <span class="nt">&lt;td&gt;&lt;</span><span class="err">%=</span> <span class="na">webhook_request.created_at</span> <span class="err">%</span><span class="nt">&gt;&lt;/td&gt;</span>
+      <span class="nt">&lt;/tr&gt;</span>
+    <span class="nt">&lt;</span><span class="err">%</span> <span class="na">end</span> <span class="err">%</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;/tbody&gt;</span>
+<span class="nt">&lt;/table&gt;</span>
+</code></pre></div></div> <p><img src="/assets/images/posts/4e34d804-ef9e-4ea3-8124-34a138ff2e42-image.png" alt="" /></p> <p>Let’s break down the interesting parts:</p> <ol> <li>We skip CSRF protection for the <code class="language-plaintext highlighter-rouge">handler</code> action since external services need to send requests</li> <li>The <code class="language-plaintext highlighter-rouge">show</code> action displays webhook requests in reverse order</li> <li>The <code class="language-plaintext highlighter-rouge">handler</code> action captures all important request details: <ul> <li>URL, IP address, and HTTP method</li> <li>Request headers</li> <li>Query parameters</li> <li>Request body</li> </ul> </li> </ol> <h2 id="the-webhookrequests-controller">The WebhookRequests Controller</h2> <p>While the WebhooksController handles the main functionality, we also need a way for users to manage individual webhook requests. That’s where the WebhookRequestsController comes in. It helps users view request details and clean up old requests they don’t need anymore.</p> <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">WebhookRequestsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+  <span class="n">before_action</span> <span class="ss">:get_webhook!</span>
+  <span class="n">before_action</span> <span class="ss">:get_webhook_request!</span>
+
+  <span class="k">def</span> <span class="nf">show</span><span class="p">;</span> <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">destroy</span>
+    <span class="vi">@webhook_request</span><span class="p">.</span><span class="nf">destroy</span>
+    
+    <span class="n">redirect_to</span> <span class="n">webhook_path</span><span class="p">(</span><span class="vi">@webhook</span><span class="p">),</span> <span class="ss">notice: </span><span class="s1">'Webhook request deleted'</span>
+  <span class="k">end</span>
+
+  <span class="kp">private</span>
+
+  <span class="k">def</span> <span class="nf">get_webhook!</span>
+    <span class="vi">@webhook</span> <span class="o">=</span> <span class="no">Webhook</span><span class="p">.</span><span class="nf">find_by!</span><span class="p">(</span><span class="ss">slug: </span><span class="n">params</span><span class="p">[</span><span class="ss">:slug</span><span class="p">])</span>
+  <span class="k">end</span>
+  
+  <span class="k">def</span> <span class="nf">get_webhook_request!</span>
+    <span class="vi">@webhook_request</span> <span class="o">=</span> <span class="vi">@webhook</span><span class="p">.</span><span class="nf">webhook_requests</span><span class="p">.</span><span class="nf">find!</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div> <p>This controller:</p> <ol> <li>Shows detailed information about a specific request</li> <li>Allows users to delete requests they don’t need anymore</li> </ol> <h2 id="testing-the-controllers">Testing the Controllers</h2> <p>Here’s how you can test the webhook endpoint using cURL:</p> <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Create a test webhook first using the Rails console</span>
+<span class="nv">$ </span>rails c
+<span class="o">&gt;</span> webhook <span class="o">=</span> Webhook.create!<span class="o">(</span>expired_at: 7.days.from_now<span class="o">)</span>
+<span class="o">&gt;</span> puts webhook.slug
+abc123-xyz-789 <span class="c"># Your UUID will be different</span>
+
+<span class="c"># Send a test request</span>
+curl <span class="nt">-X</span> POST <span class="se">\\</span>
+  <span class="nt">-H</span> <span class="s2">"Content-Type: application/json"</span> <span class="se">\\</span>
+  <span class="nt">-d</span> <span class="s1">'{"message":"Hello WebhookDump!"}'</span> <span class="se">\\</span>
+  <span class="s2">"&lt;http://localhost:3000/abc123-xyz-789&gt;"</span>
+
+</code></pre></div></div> <p>If you visit <code class="language-plaintext highlighter-rouge">http://localhost:3000/v/abc123/1</code> in your browser, you’ll see the request details!</p> <p><img src="/assets/images/posts/62a4acee-179e-47ff-98fa-21217ae7a810-image.png" alt="" /></p> <h2 id="error-handling">Error Handling</h2> <p>One important aspect is handling expired webhooks. I created a custom error class:</p> <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">WebhookExpired</span> <span class="o">&lt;</span> <span class="no">StandardError</span><span class="p">;</span> <span class="k">end</span>
+</code></pre></div></div> <p>And added error handling in <code class="language-plaintext highlighter-rouge">application_controller.rb</code>:</p> <div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">ApplicationController</span> <span class="o">&lt;</span> <span class="no">ActionController</span><span class="o">::</span><span class="no">Base</span>
+  <span class="n">rescue_from</span> <span class="no">WebhookExpired</span><span class="p">,</span> <span class="ss">with: :webhook_expired</span>
+
+  <span class="kp">private</span>
+
+  <span class="k">def</span> <span class="nf">webhook_expired</span>
+    <span class="n">render</span> <span class="s2">"errors/webhook_expired"</span><span class="p">,</span> <span class="ss">status: :gone</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div> <p>Now when someone tries to use an expired webhook, they’ll see a friendly error message instead of a crash.</p> <p>In the next chapter, we’ll make our application more interactive by adding real-time updates with Action Cable when new webhook requests arrive.</p> <p>Stay tuned! 🚀</p> </div> <div class="grid grid-cols-2 text-sm"> <a class="prev" href="https://rslhdyt.dev/fix-dotenv-not-properly-setup-in-foreman/">&laquo; Fix dotenv not properly setup in Foreman</a> <a class="next" href="https://rslhdyt.dev/understanding-websocket-the-foundation-of-real-time-web/">Understanding WebSocket: The Foundation of Real-time Web &raquo;</a> </div> <div class="related"> <h4 class="text-xl my-5">Related Posts</h4> <ul class="list-disc list-inside"> <li class="pl-8"> <a href="https://rslhdyt.dev/setting-resource-limits-in-kamal-2/">Setting Resource Limits in Kamal 2 </a> </li> <li class="pl-8"> <a href="https://rslhdyt.dev/til-handling-changes-to-sidekiq-worker-class/">TIL: Handling Changes to Sidekiq Worker Class </a> </li> <li class="pl-8"> <a href="https://rslhdyt.dev/fix-dotenv-not-properly-setup-in-foreman/">Fix dotenv not properly setup in Foreman </a> </li> <li class="pl-8"> <a href="https://rslhdyt.dev/building-the-core-webhook-and-request-models/">Building the Core: Webhook and Request Models </a> </li> <li class="pl-8"> <a href="https://rslhdyt.dev/rails-disable-route-format/">Rails Disable Route Format </a> </li> </ul> </div> <footer class="flex justify-center items-center border-solid border-0 border-t border-gray-200 p-10 mt-10"> Risal Hidayat © 2024 </footer> </div> </body> </html>
