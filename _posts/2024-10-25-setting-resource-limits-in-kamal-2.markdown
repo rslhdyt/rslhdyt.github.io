@@ -10,7 +10,7 @@ title: Setting Resource Limits in Kamal 2
 created_time: 2024-10-25T15:13:00.000Z
 cover: 
 icon: 
-last_edited_time: 2024-10-25T15:38:00.000Z
+last_edited_time: 2024-10-25T15:44:00.000Z
 archived: false
 created_by_object: user
 created_by_id: 6b2c6a42-5dc5-4108-b726-4c02437b814d
@@ -36,7 +36,7 @@ For your main application and accessories, add options key to your `deploy.yml`:
 # config/deploy.yml
 
 servers:
-  host: HOST
+	host: HOST
   options:
     cpus: "1"     # Use 1 CPU core
     memory: 512M  # Limit memory to 512MB

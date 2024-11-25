@@ -1,5 +1,5 @@
 ---
-tags: ["rails", "webhookdump", "security"]
+tags: ["rails", "security"]
 date: 2024-03-12 00:00:00 +0700
 description: Learn how to disable Rails route formats (.xml, .json) to prevent unwanted format requests and clean up your error logs. Simple solutions to improve your Rails app's security and monitoring.
 published: true
@@ -10,7 +10,7 @@ title: Rails Disable Route Format
 created_time: 2024-03-13T00:57:00.000Z
 cover: 
 icon: 
-last_edited_time: 2024-10-24T08:01:00.000Z
+last_edited_time: 2024-11-25T06:54:00.000Z
 archived: false
 created_by_object: user
 created_by_id: 6b2c6a42-5dc5-4108-b726-4c02437b814d
