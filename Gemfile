@@ -17,4 +17,4 @@ end
 gem "webrick", "~> 1.7"
 
 gem 'notion-ruby-client'
-gem 'notion_to_md', git: 'rslhdyt/notion_to_md', branch: 'main'
+gem 'notion_to_md', github: 'rslhdyt/notion_to_md', branch: 'main'
