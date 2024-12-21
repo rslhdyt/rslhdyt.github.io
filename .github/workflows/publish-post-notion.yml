@@ -29,8 +29,8 @@ jobs:
         
       - name: Commit and push changes
         run: |
-          git config --local user.email "${{ github.event.actor }}@users.noreply.github.com"
-          git config --local user.name "${{ github.event.actor }}"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
           git add .
           git commit -m "Add new post from Notion page ${{ github.event.inputs.notion_page_id }}"
           git push origin main
