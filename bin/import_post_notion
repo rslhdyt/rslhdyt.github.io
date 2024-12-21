@@ -18,25 +18,11 @@ page = notion_client.page(page_id: page_id)
 database = [page]
 
 module NotionToMd
-  # class Page
-  #   def frontmatter
-  #     @frontmatter ||= <<~CONTENT
-  #       ---
-  #       #{props.to_a.map do |k, v|
-  #           if k.to_s == 'title'
-  #             "title: \"#{v}\""
-  #           else
-  #             "#{k}: #{v}"
-  #           end
-  #         end.join("\n")}
-  #       ---
-  #     CONTENT
-  #   end
-  # end
-
   module Blocks
     class Types
       class << self
+        alias_method :original_image, :image
+
         def image(block)
           type = block[:type].to_sym
           url = URI.parse(block.dig(type, :url))
@@ -54,9 +40,6 @@ module NotionToMd
           image_md = "#{image_md}\n\n<em>#{caption}</em>"
 
           return image_md
-          # or you can use jekyll_picture_tag plugin and return liquid 
-          # tag "picture" here, which automatically generates responsive 
-          # images for you.
         end
       end
     end

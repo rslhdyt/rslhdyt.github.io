@@ -21,9 +21,10 @@ jobs:
           bundler-cache: true
               
       - name: Import post from Notion
+        env:
+          NOTION_SECRET: ${{ secrets.NOTION_SECRET }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
         run: |
-          NOTION_SECRET=${{ secrets.NOTION_SECRET }} \
-          NOTION_DATABASE_ID=${{ secrets.NOTION_DATABASE_ID }} \
           bin/import_post_notion ${{ github.event.inputs.notion_page_id }}
         
       - name: Commit and push changes
