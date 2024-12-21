@@ -1,0 +1,40 @@
+name: Publish Post from Notion
+
+on:
+  workflow_dispatch:
+    inputs:
+      notion_page_id:
+        description: 'Notion Page ID'
+        required: true
+        type: string
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.1
+          bundler-cache: true
+          
+      - name: Set up environment variables
+        env:
+          NOTION_SECRET: ${{ secrets.NOTION_SECRET }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+        run: |
+          echo "NOTION_SECRET=$NOTION_SECRET" >> .env
+          echo "NOTION_DATABASE_ID=$NOTION_DATABASE_ID" >> .env
+          
+      - name: Import post from Notion
+        run: bin/import_post_notion ${{ github.event.inputs.notion_page_id }}
+        
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "${{ github.event.actor }}@users.noreply.github.com"
+          git config --local user.name "${{ github.event.actor }}"
+          git add .
+          git commit -m "Add new post from Notion page ${{ github.event.inputs.notion_page_id }}"
+          git push origin main
