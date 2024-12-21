@@ -34,43 +34,6 @@ database = notion_client.database_query(
 puts "\e[33mStart fetching pages from Notion...\e[0m"
 puts "Total pages: #{database.results.size} from #{beginning_of_day}\n\n"
 
-module NotionToMd
-  module Blocks
-    class Types
-      class << self
-        def image(block)
-          type = block[:type].to_sym
-          url = URI.parse(block.dig(type, :url))
-          
-          image_md = "![](#{url})" 
-
-          if type == :file
-            filename = url.path.split('/')[-2..-1].join('-')
-            filename_path = "assets/images/posts/#{filename}"
-            
-            # download the image if it doesn't exist
-            IO.copy_stream(url.open, filename_path) unless File.exist?(filename_path)
-
-            image_md = "![](/#{filename_path})"
-          end
-
-          caption = convert_caption(block)
-          image_md += "\n<em>#{caption}</em>" unless caption.empty?
-
-          return image_md
-        end
-
-        # https://developers.notion.com/changelog/link-previews-block-and-rich_text-supported-in-response
-        def link_preview(block)
-          url = block[:url]
-
-          "[#{url}](#{url})\n"
-        end
-      end
-    end
-  end
-end
-
 success = 0
 
 database.results.each do |page|

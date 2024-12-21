@@ -17,35 +17,6 @@ notion_client = Notion::Client.new(token: notion_secret)
 page = notion_client.page(page_id: page_id)
 database = [page]
 
-module NotionToMd
-  module Blocks
-    class Types
-      class << self
-        alias_method :original_image, :image
-
-        def image(block)
-          type = block[:type].to_sym
-          url = URI.parse(block.dig(type, :url))
-          # https://example.com/filename.jpg?queryParams -> filename.jpg
-          filename = "assets/images/posts/#{url.to_s.split('/')[-1].split('?')[0]}"
-          
-          # we can also retrieve a caption here like this:
-          image_md = "![](/#{filename})"
-          image_md = "![](#{url})" if url.to_s.include?('unsplash.com')
-          
-          IO.copy_stream(url.open, filename) if !File.exist?(filename)
-          
-          caption = convert_caption(block)
-
-          image_md = "#{image_md}\n\n<em>#{caption}</em>"
-
-          return image_md
-        end
-      end
-    end
-  end
-end
-
 database.each do |page|
   return if page.object != 'page'
   
