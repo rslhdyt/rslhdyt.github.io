@@ -1,4 +1,4 @@
-name: Publish Post from Notion
+name: Publish Post Notion
 
 on:
   workflow_dispatch:
