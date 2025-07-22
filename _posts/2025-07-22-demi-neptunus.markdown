@@ -36,7 +36,7 @@ Singkat cerita, muncul inisiatif untuk menggantikan Cerberus dengan sistem open 
 
 Karena integrasi penuh belum bisa dilakukan tanpa risiko besar, akhirnya kami mengambil keputusan bijak khas dunia nyata: biarkan dua-duanya hidup berdampingan. Alhasil, user nantinya bisa login lewat sistem lama atau sistem baru. Alias: kita punya dua mekanisme autentikasi yang berjalan paralel. Alias DUA KEPALA.
 
-Saya iseng berkelakar ke rekan saya, Tie, "Tie, sepertinya project Cerberus sudah mulai menjiwai namanya. Sekarang udah punya dua kepala. Tinggal cari satu lagi buat lengkapin..." Dengan cepat dia menimpali, "Kalau hitung portal aplikasi juga, bisa dibilang Cerberus kita udah punya tiga kepala loh." Dan di situlah saya sadar — kita benar-benar telah menciptakan Cerberus yang sesungguhnya.
+Saya iseng berkelakar ke rekan saya, Tie, "Tie, sepertinya project Cerberus sudah mulai menjiwai namanya. Sekarang udah punya dua kepala. Tinggal cari satu lagi buat lengkapin..." Dengan cepat dia menimpali, "Kalau hitung portal aplikasi juga, bisa dibilang Cerberus kita udah punya tiga kepala loh." Dan di situlah saya sadar kita benar-benar telah menciptakan Cerberus yang sesungguhnya.
 
 Demi Neptunus!!! (eh... Neptunus memang bukan dewa Yunani, tapi Roman, sepupu Poseidon. Tapi sudahlah...)
 
