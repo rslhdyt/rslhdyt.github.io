@@ -3,8 +3,8 @@ name: Publish Post From Notion
 on:
   workflow_dispatch:
     inputs:
-      notion_page_id:
-        description: 'Notion Page ID'
+      notion_page_url:
+        description: 'Notion Page URL'
         required: true
         type: string
 
@@ -25,12 +25,12 @@ jobs:
           NOTION_SECRET: ${{ secrets.NOTION_SECRET }}
           NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
         run: |
-          bin/import_post_notion ${{ github.event.inputs.notion_page_id }}
+          bin/import_post_notion ${{ github.event.inputs.notion_page_url }}
         
       - name: Commit and push changes
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add .
-          git commit -m "Add new post from Notion page ${{ github.event.inputs.notion_page_id }}"
+          git commit -m "Add new post from Notion page ${{ github.event.inputs.notion_page_url }}"
           git push origin main

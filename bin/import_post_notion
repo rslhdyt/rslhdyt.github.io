@@ -9,7 +9,10 @@ require 'open-uri'
 notion_secret = ENV['NOTION_SECRET']
 database_id = ENV['NOTION_DATABASE_ID']
 
-page_id = ARGV[0]
+page_url = ARGV[0]
+page_id = page_url.split('/').last
+
+puts "Page ID: #{page_id}"
 
 notion_client = Notion::Client.new(token: notion_secret)
 
