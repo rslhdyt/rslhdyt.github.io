@@ -1,6 +1,6 @@
 ---
 tags: ["rails", "race-condition", "journey", "ruby", "story"]
-date: 2025-09-30 00:00:00 +0000
+date: 2025-09-30 00:00:00 +0700
 description: "Technical interviews often reveal gaps in our understanding. During a recent interview with a Japanese company, I confidently explained a race condition issue as a \"Dirty Read\" problem – a term I'd been misusing for years. The interviewer's follow-up questions led me to discover the real concept: TOCTOU (Time-of-Check to Time-of-Use). This interview not only corrected my misconception but reminded me why accepting interview opportunities is crucial for growth, even when you're not job hunting."
 published: true
 collection: posts
@@ -10,15 +10,13 @@ title: TOCTOU vs Dirty Read
 created_time: 2025-09-30T12:14:00.000Z
 cover: 
 icon: 
-last_edited_time: 2025-09-30T12:23:00.000Z
+last_edited_time: 2025-09-30T12:41:00.000Z
 archived: false
 created_by_object: user
 created_by_id: 6b2c6a42-5dc5-4108-b726-4c02437b814d
 last_edited_by_object: user
 last_edited_by_id: 6b2c6a42-5dc5-4108-b726-4c02437b814d
 ---
-
-# Race Conditions: TOCTOU vs Dirty Read
 
 ## The Interview
 
@@ -39,7 +37,6 @@ create_table "follows", force: :cascade do |t|
   t.index ["follower_id", "followed_id"], name: "index_follows_on_follower_id_and_followed_id", unique: true
   t.index ["follower_id"], name: "index_follows_on_follower_id"
 end
-
 ```
 
 The interviewer asked: "Based on this database design, do you think it can handle when a user follows themselves?"
@@ -66,7 +63,6 @@ class Follow < ApplicationRecord
     end
   end
 end
-
 ```
 
 As you can see, there's a validation to prevent users from following themselves. And here's where the interesting part begins. The interviewer asked:
@@ -136,7 +132,6 @@ end
 
 pids.each { |pid| Process.wait(pid) }
 puts "Total users with that email: #{User.where(email: email).count}"
-
 ```
 
 **The result:**

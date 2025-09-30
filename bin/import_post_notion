@@ -9,8 +9,7 @@ require 'open-uri'
 notion_secret = ENV['NOTION_SECRET']
 database_id = ENV['NOTION_DATABASE_ID']
 
-page_url = ARGV[0]
-page_id = page_url.split('/').last
+page_id = ARGV[0]
 
 puts "Page ID: #{page_id}"
 
