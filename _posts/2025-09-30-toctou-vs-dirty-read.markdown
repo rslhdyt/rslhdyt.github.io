@@ -10,7 +10,7 @@ title: TOCTOU vs Dirty Read
 created_time: 2025-09-30T12:14:00.000Z
 cover: 
 icon: 
-last_edited_time: 2025-09-30T12:41:00.000Z
+last_edited_time: 2025-10-01T01:53:00.000Z
 archived: false
 created_by_object: user
 created_by_id: 6b2c6a42-5dc5-4108-b726-4c02437b814d
@@ -20,7 +20,7 @@ last_edited_by_id: 6b2c6a42-5dc5-4108-b726-4c02437b814d
 
 ## The Interview
 
-Today is another reason and story to share about why I always encourage my fellow peers, subordinates, and friends to accept job offers and do as many job interviews as they can. Not only for the chance to get a new job, but in my opinion, the most important part are the experience the knowledge from the interview itself.
+Today is another reason and story to share about why I always encourage my fellow peers, subordinates, and friends to accept job offers and do as many job interviews as they can. Not only for the chance to get a new job, but in my opinion, the most important part are the experience and the knowledge from the interview itself.
 
 Today, I had a technical interview session with a company from Japan. Before the interview, I had to complete a take-home test, and the interviewer asked about my code and decisions based on the project.
 
