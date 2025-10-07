@@ -276,6 +276,6 @@ json-server transformed what could have been days of environment setup into a 30
 
 You might also want to explore **WireMock** if you need more sophisticated request matching. But for quickly mocking REST APIs, especially legacy systems, json-server hits the sweet spot between simplicity and functionality.
 
-**When dealing with legacy systems, sometimes the best integration is the one that doesn't require actually integrating at all **😄
+**When dealing with legacy systems, sometimes the best integration is the one that doesn't require actually integrating at all** 😄
 
 
